@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.1a2 (Python 3.10.6 on win32)" generated="20221226 10:36:06.809" rpa="false" schemaversion="3">
+<suite id="s1" name="Add Card" source="C:\Users\ismurroozi\automation_framework\test_cases\backend_service\add_card.robot">
+<test id="s1-t1" name="Add Card 1 3DS" line="12">
+<kw name="Add Card" library="backend_service">
+<var>${value1}</var>
+<var>${value2}</var>
+<var>@{value3}</var>
+<arg>${EMPTY}</arg>
+<arg>${True}</arg>
+<msg timestamp="20221226 10:36:08.075" level="INFO">------------------------------ 
+start of case run for API add-card
+------------------------------
+Successfully loaded service config
+Config retrieved for service backend_service_payment add-card
+{'currency': None, 'cardNumber': None, 'cardHolderName': None, 'cvv': None, 'madaCard': None, 'capture': None, 'addDefault': None, 'expiryMonth': None, 'expiryYear': None}
+Successfully loaded service config
+Successfully loaded API default value backend_service_payment add-card
+Default value assigned for service backend_service_payment add-card
+backend_service_payment
+{'currency': 'AED', 'cardNumber': '4242424242424242', 'cardHolderName': 'aaaaa', 'cvv': '100', 'madaCard': False, 'capture': False, 'addDefault': 1, 'expiryMonth': 10, 'expiryYear': 26}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: POST || complete_path: /payment/addCard || send_body: {"currency": "AED", "cardNumber": "4242424242424242", "cardHolderName": "aaaaa", "cvv": "100", "madaCard": false, "capture": false, "addDefault": 1, "expiryMonth": 10, "expiryYear": 26} || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en', 'Content-Type': 'application/json'}
+Successfully decode response data
+Status: 200 and reason: OK and resp data: {'statusCode': 200, 'message': 'Success', 'data': {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_p5f6avaw653uvoytv5zkb5vbfa'}}</msg>
+<msg timestamp="20221226 10:36:08.076" level="INFO">${value1} = 200</msg>
+<msg timestamp="20221226 10:36:08.076" level="INFO">${value2} = OK</msg>
+<msg timestamp="20221226 10:36:08.076" level="INFO">@{value3} = [ {'statusCode': 200, 'message': 'Success', 'data': {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_p5f6avaw653uvoytv5zkb5vbfa'}} ]</msg>
+<status status="PASS" starttime="20221226 10:36:06.933" endtime="20221226 10:36:08.076"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value1}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221226 10:36:08.077" endtime="20221226 10:36:08.079"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value2}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221226 10:36:08.080" endtime="20221226 10:36:08.080"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${value3}[0][data][redirectUrl]</arg>
+<arg>https://3ds2-sandbox.ckotech.co/interceptor/</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20221226 10:36:08.082" endtime="20221226 10:36:08.083"/>
+</kw>
+<tag>HIGH</tag>
+<status status="PASS" starttime="20221226 10:36:06.933" endtime="20221226 10:36:08.083"/>
+</test>
+<test id="s1-t2" name="Add Card 2 Non 3DS" line="19">
+<kw name="Add Card" library="backend_service">
+<var>${value1}</var>
+<var>${value2}</var>
+<var>@{value3}</var>
+<arg>${card_non_3ds}</arg>
+<arg>${True}</arg>
+<msg timestamp="20221226 10:36:08.962" level="INFO">------------------------------ 
+start of case run for API add-card
+------------------------------
+Successfully loaded service config
+Config retrieved for service backend_service_payment add-card
+{'currency': None, 'cardNumber': None, 'cardHolderName': None, 'cvv': None, 'madaCard': None, 'capture': None, 'addDefault': None, 'expiryMonth': None, 'expiryYear': None}
+Successfully loaded service config
+Successfully loaded API default value backend_service_payment add-card
+Default value assigned for service backend_service_payment add-card
+cardNumber set to 345678901234564
+cvv set to 1051
+Test data assigned successfully to API structure
+backend_service_payment
+{'currency': 'AED', 'cardNumber': '345678901234564', 'cardHolderName': 'aaaaa', 'cvv': '1051', 'madaCard': False, 'capture': False, 'addDefault': 1, 'expiryMonth': 10, 'expiryYear': 26}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: POST || complete_path: /payment/addCard || send_body: {"currency": "AED", "cardNumber": "345678901234564", "cardHolderName": "aaaaa", "cvv": "1051", "madaCard": false, "capture": false, "addDefault": 1, "expiryMonth": 10, "expiryYear": 26} || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en', 'Content-Type': 'application/json'}
+Successfully decode response data
+Status: 200 and reason: OK and resp data: {'statusCode': 200, 'message': 'Success', 'data': {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_cquy4637yy5uhf3xv4zfumiit4'}}</msg>
+<msg timestamp="20221226 10:36:08.962" level="INFO">${value1} = 200</msg>
+<msg timestamp="20221226 10:36:08.963" level="INFO">${value2} = OK</msg>
+<msg timestamp="20221226 10:36:08.963" level="INFO">@{value3} = [ {'statusCode': 200, 'message': 'Success', 'data': {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_cquy4637yy5uhf3xv4zfumiit4'}} ]</msg>
+<status status="PASS" starttime="20221226 10:36:08.087" endtime="20221226 10:36:08.963"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value1}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221226 10:36:08.964" endtime="20221226 10:36:08.965"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value2}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221226 10:36:08.966" endtime="20221226 10:36:08.967"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${value3}[0][data][redirectUrl]</arg>
+<arg>https://3ds2-sandbox.ckotech.co/interceptor/</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20221226 10:36:08.968" endtime="20221226 10:36:08.968"/>
+</kw>
+<tag>HIGH</tag>
+<status status="PASS" starttime="20221226 10:36:08.086" endtime="20221226 10:36:08.969"/>
+</test>
+<test id="s1-t3" name="Add Card 3 Mismatch Card Number and CVV" line="26">
+<kw name="Add Card" library="backend_service">
+<var>${value1}</var>
+<var>${value2}</var>
+<var>@{value3}</var>
+<arg>${invalid_cvv}</arg>
+<arg>${True}</arg>
+<msg timestamp="20221226 10:36:10.084" level="INFO">------------------------------ 
+start of case run for API add-card
+------------------------------
+Successfully loaded service config
+Config retrieved for service backend_service_payment add-card
+{'currency': None, 'cardNumber': None, 'cardHolderName': None, 'cvv': None, 'madaCard': None, 'capture': None, 'addDefault': None, 'expiryMonth': None, 'expiryYear': None}
+Successfully loaded service config
+Successfully loaded API default value backend_service_payment add-card
+Default value assigned for service backend_service_payment add-card
+cvv set to 505
+Test data assigned successfully to API structure
+backend_service_payment
+{'currency': 'AED', 'cardNumber': '4242424242424242', 'cardHolderName': 'aaaaa', 'cvv': '505', 'madaCard': False, 'capture': False, 'addDefault': 1, 'expiryMonth': 10, 'expiryYear': 26}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: POST || complete_path: /payment/addCard || send_body: {"currency": "AED", "cardNumber": "4242424242424242", "cardHolderName": "aaaaa", "cvv": "505", "madaCard": false, "capture": false, "addDefault": 1, "expiryMonth": 10, "expiryYear": 26} || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en', 'Content-Type': 'application/json'}
+Successfully decode response data
+Status: 200 and reason: OK and resp data: {'statusCode': 200, 'message': 'Success', 'data': {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_rezvooup3wcezd2gwg6t4kyzpq'}}</msg>
+<msg timestamp="20221226 10:36:10.085" level="INFO">${value1} = 200</msg>
+<msg timestamp="20221226 10:36:10.085" level="INFO">${value2} = OK</msg>
+<msg timestamp="20221226 10:36:10.085" level="INFO">@{value3} = [ {'statusCode': 200, 'message': 'Success', 'data': {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_rezvooup3wcezd2gwg6t4kyzpq'}} ]</msg>
+<status status="PASS" starttime="20221226 10:36:08.974" endtime="20221226 10:36:10.085"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value1}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221226 10:36:10.086" endtime="20221226 10:36:10.088"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value2}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221226 10:36:10.089" endtime="20221226 10:36:10.089"/>
+</kw>
+<tag>HIGH</tag>
+<status status="PASS" starttime="20221226 10:36:08.973" endtime="20221226 10:36:10.091"/>
+</test>
+<test id="s1-t4" name="Add Card 4 Expired Card" line="32">
+<kw name="Add Card" library="backend_service">
+<var>${value1}</var>
+<var>${value2}</var>
+<var>@{value3}</var>
+<arg>${expired_card}</arg>
+<arg>${True}</arg>
+<msg timestamp="20221226 10:36:10.716" level="INFO">------------------------------ 
+start of case run for API add-card
+------------------------------
+Successfully loaded service config
+Config retrieved for service backend_service_payment add-card
+{'currency': None, 'cardNumber': None, 'cardHolderName': None, 'cvv': None, 'madaCard': None, 'capture': None, 'addDefault': None, 'expiryMonth': None, 'expiryYear': None}
+Successfully loaded service config
+Successfully loaded API default value backend_service_payment add-card
+Default value assigned for service backend_service_payment add-card
+expiryMonth set to 11
+expiryYear set to 12
+Test data assigned successfully to API structure
+backend_service_payment
+{'currency': 'AED', 'cardNumber': '4242424242424242', 'cardHolderName': 'aaaaa', 'cvv': '100', 'madaCard': False, 'capture': False, 'addDefault': 1, 'expiryMonth': '11', 'expiryYear': '12'}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: POST || complete_path: /payment/addCard || send_body: {"currency": "AED", "cardNumber": "4242424242424242", "cardHolderName": "aaaaa", "cvv": "100", "madaCard": false, "capture": false, "addDefault": 1, "expiryMonth": "11", "expiryYear": "12"} || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en', 'Content-Type': 'application/json'}
+Successfully decode response data
+Status: 400 and reason: Bad Request and resp data: {'statusCode': 400, 'error': 'Bad Request', 'message': 'The transaction failed, please check your card details and try again with the same or another card.'}</msg>
+<msg timestamp="20221226 10:36:10.717" level="INFO">${value1} = 400</msg>
+<msg timestamp="20221226 10:36:10.717" level="INFO">${value2} = Bad Request</msg>
+<msg timestamp="20221226 10:36:10.717" level="INFO">@{value3} = [ {'statusCode': 400, 'error': 'Bad Request', 'message': 'The transaction failed, please check your card details and try again with the same or another card.'} ]</msg>
+<status status="PASS" starttime="20221226 10:36:10.095" endtime="20221226 10:36:10.717"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value1}</arg>
+<arg>${400}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221226 10:36:10.718" endtime="20221226 10:36:10.720"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value2}</arg>
+<arg>Bad Request</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221226 10:36:10.721" endtime="20221226 10:36:10.721"/>
+</kw>
+<tag>HIGH</tag>
+<status status="PASS" starttime="20221226 10:36:10.094" endtime="20221226 10:36:10.722"/>
+</test>
+<status status="PASS" starttime="20221226 10:36:06.811" endtime="20221226 10:36:10.726"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="4" fail="0" skip="0">HIGH</stat>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="Add Card">Add Card</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

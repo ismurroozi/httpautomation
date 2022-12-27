@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.1a2 (Python 3.10.6 on win32)" generated="20221227 16:56:44.113" rpa="false" schemaversion="3">
+<suite id="s1" name="Add Card" source="C:\Users\ismurroozi\automation_framework\test_cases\billing_service\add_card.robot">
+<test id="s1-t1" name="Add Card 1 3DS" line="12">
+<kw name="Add Card" library="billing_service">
+<var>${status}</var>
+<var>${reason}</var>
+<var>@{responsedata}</var>
+<var>${redirect_link_status}</var>
+<arg>${EMPTY}</arg>
+<arg>${True}</arg>
+<msg timestamp="20221227 16:56:45.987" level="INFO">------------------------------ 
+start of case run for API add-card
+------------------------------
+Successfully loaded service config
+Config retrieved for service billing_service add-card
+Successfully loaded service config
+Successfully loaded API default value billing_service add-card
+Default value assigned for service billing_service add-card
+start sending request process for method POST, service billing_service, api add-card
+Successfully loaded service config
+successfully construct complete url: https://test.invygo.com/billing/api/billing/addCard
+{"redirectUrl":"https://3ds2-sandbox.ckotech.co/interceptor/3ds_mablxdoxzhqeze4py4etn5snpi","addCardResponse":{"redirectUrl":"https://3ds2-sandbox.ckotech.co/interceptor/3ds_mablxdoxzhqeze4py4etn5snpi"}}
+Successfully sent method: POST || complete_path: https://test.invygo.com/billing/api/billing/addCard || send_body: {"cardNumber": "4242424242424242", "cvv": "100", "expiryMonth": 10, "expiryYear": 26, "cardHolderName": "PHILIPPE S COSTA", "userId": "622b3c806a51a94f70fd8ff3", "userData": {"name": "Philippe", "email": "phcostabh@icloud.com"}, "currency": "AED", "madaCard": false, "checkoutAmount": null, "capture": false, "captureTransactionId": null, "addDefault": 1} || send_headers: {'Content-Type': 'application/json'}
+Status: 200 and reason: OK and resp data: {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_mablxdoxzhqeze4py4etn5snpi', 'addCardResponse': {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_mablxdoxzhqeze4py4etn5snpi'}}</msg>
+<msg timestamp="20221227 16:56:45.988" level="INFO">${status} = 200</msg>
+<msg timestamp="20221227 16:56:45.988" level="INFO">${reason} = OK</msg>
+<msg timestamp="20221227 16:56:45.988" level="INFO">@{responsedata} = [ {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_mablxdoxzhqeze4py4etn5snpi', 'addCardResponse': {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_mablxdoxzhqeze4py4et...</msg>
+<msg timestamp="20221227 16:56:45.988" level="INFO">${redirect_link_status} = 200</msg>
+<status status="PASS" starttime="20221227 16:56:44.440" endtime="20221227 16:56:45.988"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221227 16:56:45.989" endtime="20221227 16:56:45.992"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${reason}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221227 16:56:45.993" endtime="20221227 16:56:45.994"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${responsedata}[0][redirectUrl]</arg>
+<arg>https://3ds2-sandbox.ckotech.co/interceptor/</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20221227 16:56:45.995" endtime="20221227 16:56:45.996"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${redirect_link_status}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221227 16:56:45.996" endtime="20221227 16:56:45.998"/>
+</kw>
+<tag>HIGH</tag>
+<status status="PASS" starttime="20221227 16:56:44.439" endtime="20221227 16:56:45.999"/>
+</test>
+<test id="s1-t2" name="Add Card 2 Non 3DS" line="20">
+<kw name="Add Card" library="billing_service">
+<var>${status}</var>
+<var>${reason}</var>
+<var>@{responsedata}</var>
+<var>${redirect_link_status}</var>
+<arg>${card_non_3ds}</arg>
+<arg>${True}</arg>
+<msg timestamp="20221227 16:56:47.700" level="INFO">------------------------------ 
+start of case run for API add-card
+------------------------------
+Successfully loaded service config
+Config retrieved for service billing_service add-card
+Successfully loaded service config
+Successfully loaded API default value billing_service add-card
+Default value assigned for service billing_service add-card
+cardNumber set to 345678901234564
+cvv set to 1051
+Test data assigned successfully to API structure
+start sending request process for method POST, service billing_service, api add-card
+Successfully loaded service config
+successfully construct complete url: https://test.invygo.com/billing/api/billing/addCard
+{"redirectUrl":"https://3ds2-sandbox.ckotech.co/interceptor/3ds_4phxpazrp6punha54c7gwo2bcm","addCardResponse":{"redirectUrl":"https://3ds2-sandbox.ckotech.co/interceptor/3ds_4phxpazrp6punha54c7gwo2bcm"}}
+Successfully sent method: POST || complete_path: https://test.invygo.com/billing/api/billing/addCard || send_body: {"cardNumber": "345678901234564", "cvv": "1051", "expiryMonth": 10, "expiryYear": 26, "cardHolderName": "PHILIPPE S COSTA", "userId": "622b3c806a51a94f70fd8ff3", "userData": {"name": "Philippe", "email": "phcostabh@icloud.com"}, "currency": "AED", "madaCard": false, "checkoutAmount": null, "capture": false, "captureTransactionId": null, "addDefault": 1} || send_headers: {'Content-Type': 'application/json'}
+Status: 200 and reason: OK and resp data: {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_4phxpazrp6punha54c7gwo2bcm', 'addCardResponse': {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_4phxpazrp6punha54c7gwo2bcm'}}</msg>
+<msg timestamp="20221227 16:56:47.700" level="INFO">${status} = 200</msg>
+<msg timestamp="20221227 16:56:47.700" level="INFO">${reason} = OK</msg>
+<msg timestamp="20221227 16:56:47.700" level="INFO">@{responsedata} = [ {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_4phxpazrp6punha54c7gwo2bcm', 'addCardResponse': {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_4phxpazrp6punha54c7g...</msg>
+<msg timestamp="20221227 16:56:47.700" level="INFO">${redirect_link_status} = 200</msg>
+<status status="PASS" starttime="20221227 16:56:46.004" endtime="20221227 16:56:47.700"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221227 16:56:47.702" endtime="20221227 16:56:47.703"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${reason}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221227 16:56:47.703" endtime="20221227 16:56:47.703"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${responsedata}[0][redirectUrl]</arg>
+<arg>https://3ds2-sandbox.ckotech.co/interceptor/</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20221227 16:56:47.704" endtime="20221227 16:56:47.704"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${redirect_link_status}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221227 16:56:47.704" endtime="20221227 16:56:47.706"/>
+</kw>
+<tag>HIGH</tag>
+<status status="PASS" starttime="20221227 16:56:46.002" endtime="20221227 16:56:47.707"/>
+</test>
+<test id="s1-t3" name="Add Card 3 Mismatch Card Number and CVV" line="28">
+<kw name="Add Card" library="billing_service">
+<var>${status}</var>
+<var>${reason}</var>
+<var>@{responsedata}</var>
+<var>${redirect_link_status}</var>
+<arg>${invalid_cvv}</arg>
+<arg>${True}</arg>
+<msg timestamp="20221227 16:56:49.353" level="INFO">------------------------------ 
+start of case run for API add-card
+------------------------------
+Successfully loaded service config
+Config retrieved for service billing_service add-card
+Successfully loaded service config
+Successfully loaded API default value billing_service add-card
+Default value assigned for service billing_service add-card
+cvv set to 505
+Test data assigned successfully to API structure
+start sending request process for method POST, service billing_service, api add-card
+Successfully loaded service config
+successfully construct complete url: https://test.invygo.com/billing/api/billing/addCard
+{"redirectUrl":"https://3ds2-sandbox.ckotech.co/interceptor/3ds_uayrvzslwbfubhx26i3njr7qt4","addCardResponse":{"redirectUrl":"https://3ds2-sandbox.ckotech.co/interceptor/3ds_uayrvzslwbfubhx26i3njr7qt4"}}
+Successfully sent method: POST || complete_path: https://test.invygo.com/billing/api/billing/addCard || send_body: {"cardNumber": "4242424242424242", "cvv": "505", "expiryMonth": 10, "expiryYear": 26, "cardHolderName": "PHILIPPE S COSTA", "userId": "622b3c806a51a94f70fd8ff3", "userData": {"name": "Philippe", "email": "phcostabh@icloud.com"}, "currency": "AED", "madaCard": false, "checkoutAmount": null, "capture": false, "captureTransactionId": null, "addDefault": 1} || send_headers: {'Content-Type': 'application/json'}
+Status: 200 and reason: OK and resp data: {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_uayrvzslwbfubhx26i3njr7qt4', 'addCardResponse': {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_uayrvzslwbfubhx26i3njr7qt4'}}</msg>
+<msg timestamp="20221227 16:56:49.353" level="INFO">${status} = 200</msg>
+<msg timestamp="20221227 16:56:49.353" level="INFO">${reason} = OK</msg>
+<msg timestamp="20221227 16:56:49.354" level="INFO">@{responsedata} = [ {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_uayrvzslwbfubhx26i3njr7qt4', 'addCardResponse': {'redirectUrl': 'https://3ds2-sandbox.ckotech.co/interceptor/3ds_uayrvzslwbfubhx26i3n...</msg>
+<msg timestamp="20221227 16:56:49.354" level="INFO">${redirect_link_status} = 200</msg>
+<status status="PASS" starttime="20221227 16:56:47.708" endtime="20221227 16:56:49.354"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221227 16:56:49.355" endtime="20221227 16:56:49.358"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${reason}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221227 16:56:49.359" endtime="20221227 16:56:49.360"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${redirect_link_status}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221227 16:56:49.361" endtime="20221227 16:56:49.362"/>
+</kw>
+<tag>HIGH</tag>
+<status status="PASS" starttime="20221227 16:56:47.708" endtime="20221227 16:56:49.364"/>
+</test>
+<test id="s1-t4" name="Add Card 4 Expired Card" line="35">
+<kw name="Add Card" library="billing_service">
+<var>${status}</var>
+<var>${reason}</var>
+<var>@{responsedata}</var>
+<var>${redirect_link_status}</var>
+<arg>${expired_card}</arg>
+<arg>${True}</arg>
+<msg timestamp="20221227 16:56:50.006" level="INFO">------------------------------ 
+start of case run for API add-card
+------------------------------
+Successfully loaded service config
+Config retrieved for service billing_service add-card
+Successfully loaded service config
+Successfully loaded API default value billing_service add-card
+Default value assigned for service billing_service add-card
+expiryMonth set to 11
+expiryYear set to 12
+Test data assigned successfully to API structure
+start sending request process for method POST, service billing_service, api add-card
+Successfully loaded service config
+successfully construct complete url: https://test.invygo.com/billing/api/billing/addCard
+{"statusCode":400,"error":"Bad Request","message":"The transaction failed, please check your card details and try again with the same or another card."}
+Successfully sent method: POST || complete_path: https://test.invygo.com/billing/api/billing/addCard || send_body: {"cardNumber": "4242424242424242", "cvv": "100", "expiryMonth": "11", "expiryYear": "12", "cardHolderName": "PHILIPPE S COSTA", "userId": "622b3c806a51a94f70fd8ff3", "userData": {"name": "Philippe", "email": "phcostabh@icloud.com"}, "currency": "AED", "madaCard": false, "checkoutAmount": null, "capture": false, "captureTransactionId": null, "addDefault": 1} || send_headers: {'Content-Type': 'application/json'}
+Status: 400 and reason: Bad Request and resp data: {'statusCode': 400, 'error': 'Bad Request', 'message': 'The transaction failed, please check your card details and try again with the same or another card.'}</msg>
+<msg timestamp="20221227 16:56:50.006" level="INFO">${status} = 400</msg>
+<msg timestamp="20221227 16:56:50.006" level="INFO">${reason} = Bad Request</msg>
+<msg timestamp="20221227 16:56:50.006" level="INFO">@{responsedata} = [ {'statusCode': 400, 'error': 'Bad Request', 'message': 'The transaction failed, please check your card details and try again with the same or another card.'} ]</msg>
+<msg timestamp="20221227 16:56:50.006" level="INFO">${redirect_link_status} = 0</msg>
+<status status="PASS" starttime="20221227 16:56:49.368" endtime="20221227 16:56:50.006"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>${400}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221227 16:56:50.009" endtime="20221227 16:56:50.011"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${reason}</arg>
+<arg>Bad Request</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221227 16:56:50.012" endtime="20221227 16:56:50.013"/>
+</kw>
+<tag>HIGH</tag>
+<status status="PASS" starttime="20221227 16:56:49.367" endtime="20221227 16:56:50.014"/>
+</test>
+<status status="PASS" starttime="20221227 16:56:44.115" endtime="20221227 16:56:50.019"/>
+</suite>
+<statistics>
+<total>
+<stat pass="4" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="4" fail="0" skip="0">HIGH</stat>
+</tag>
+<suite>
+<stat pass="4" fail="0" skip="0" id="s1" name="Add Card">Add Card</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
