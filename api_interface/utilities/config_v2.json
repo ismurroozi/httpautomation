@@ -1,0 +1,36 @@
+{
+    "mongo_db":{
+        "uri":"mongodb://roozi:EGUSjftsZhvy7F3k@test-shard-00-02.z9iq5.mongodb.net:27017,test-shard-00-00.z9iq5.mongodb.net:27017,test-shard-00-01.z9iq5.mongodb.net:27017/invygo-test?ssl=true&replicaSet=atlas-13adki-shard-0&readPreference=primary&connectTimeoutMS=10000&authSource=admin&authMechanism=SCRAM-SHA-1"
+    },
+    "mysql_db":{
+        "host":"dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com",
+        "username": "admin",
+        "password": "YlfRv3t27Z"
+    },
+    "backend_service_booking": {
+        "connection_config": {
+            "host": "https://test-api.invygo.com",
+            "path":"/booking/"
+        },
+        "api_structure": "backend_service_booking.json",
+        "sample_api_structure": "backend_service_booking_sample.json",
+        "create-booking":{
+            "end_point": "createBooking",
+            "signature": "\\automation_framework\\api_interface\\utilities\\template_files\\tree.jpeg"
+        }
+    },
+    "billing_service": {
+        "connection_config": {
+            "host": "https://test.invygo.com",
+            "path":"/billing/api/billing/"
+        },
+        "api_structure": "billing_service.json",
+        "sample_api_structure": "billing_service_sample.json",
+        "add-card":{
+            "end_point": "addCard"
+        },
+        "accept-booking":{
+            "end_point": "acceptBooking"
+        }
+    }
+}

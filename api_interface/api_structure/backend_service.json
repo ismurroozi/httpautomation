@@ -1,0 +1,34 @@
+{
+    "add-card": {
+        "currency": null,
+        "cardNumber": null,
+        "cardHolderName": null,
+        "cvv": null,
+        "madaCard": null,
+        "capture": null,
+        "addDefault": null,
+        "expiryMonth": null,
+        "expiryYear": null
+    },
+    "take-payment": {
+      },
+    "add-apple-pay-card": {
+        "type": null,
+        "currency": null,
+        "userId": null,
+        "paymentInfo": {
+            "tokenData": null
+        }
+    },
+    "upload-salik-fine-csv": {
+        "preUploadSupport": true,
+        "preUpload": true,
+        "serviceProviderId": "5e3684b336feed61fe62dbe0"
+    },
+    "report-car-issue":{
+        "bookingId": null,
+        "issueType": null,
+        "issueNote": null,
+        "issuePriority": null
+    }
+}

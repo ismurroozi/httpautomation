@@ -1,0 +1,161 @@
+{
+    "add-card": {
+        "currency": null,
+        "cardNumber": null,
+        "cardHolderName": null,
+        "cvv": null,
+        "madaCard": null,
+        "expiryMonth": null,
+        "expiryYear": null,
+        "capture": null,
+        "userId": null,
+        "userData": {
+            "email": null,
+            "name": null
+        },
+        "addDefault": null,
+        "purposeOfPayment": null,
+        "threeDs": {
+            "enabled": null,
+            "attempt_n3d": null
+        },
+        "transactionName": null
+    },
+    "authorize-amount": {
+        "cardId": null,
+        "sourceId": null,
+        "cvv": null,
+        "userData": {
+            "email": null,
+            "name": null
+        },
+        "currency": null,
+        "userId": null,
+        "cardHolderName": null,
+        "cardNumber": null,
+        "captureTransactionId": null,
+        "description": null,
+        "transactionIds": null,
+        "returningBookingId": null,
+        "returnReasonByCustomer": null,
+        "returnDate": null,
+        "pickup": null,
+        "reserveBookingId": null,
+        "recurringBookingId": null,
+        "walletBalanceUsed": null,
+        "flow": null,
+        "reference": null,
+        "capture": null,
+        "amount": null,
+        "success_url": null,
+        "failure_url": null,
+        "token": null,
+        "purposeOfPayment": null,
+        "timestamp": null,
+        "idempotencyKey": null,
+        "transactionName": null,
+        "bookingId":null
+    },
+    "capture-amount": {
+        "payRef": null,
+        "amount": null,
+        "userId": null,
+        "userData": {
+            "email": null,
+            "name": null
+        },
+        "transactionRefNumber": null,
+        "currency": null,
+        "reference": null,
+        "cvv": null,
+        "transactionName": null,
+        "bookingId": null,
+        "purposeOfPayment": null,
+        "timestamp": null,
+        "idempotencyKey": null
+    },
+    "refund-amount": {
+        "amount": null,
+        "transactionRefNumber": null,
+        "invoiceNumber": null,
+        "userData": {
+            "email": null,
+            "name": null
+        },
+        "currency": null,
+        "bookingId": null,
+        "purposeOfPayment": null,
+        "timestamp": null,
+        "idempotencyKey": null
+    },
+    "void-amount": {
+        "amount": null,
+        "transactionRefNumber": null,
+        "invoiceNumber": null,
+        "userData": {
+            "email": null,
+            "name": null
+        },
+        "currency": null,
+        "bookingId": null,
+        "purposeOfPayment": null,
+        "timestamp": null,
+        "idempotencyKey": null
+    },
+    "add-apple-pay-card": {
+        "userData": {
+            "email": null,
+            "name": null
+        },
+        "tokenData": null,
+        "amount": null,
+        "currency": null,
+        "userId": null,
+        "bookingId": null,
+        "purposeOfPayment": null,
+        "timestamp": null,
+        "idempotencyKey": null
+    },
+    "capture-apple-pay": {
+        "userData": {
+            "email": null,
+            "name": null
+        },
+        "tokenData": null,
+        "amount": null,
+        "currency": null,
+        "reserveBookingId": null,
+        "walletBalanceUsed": null,
+        "purposeOfPayment": null,
+        "timestamp": null,
+        "idempotencyKey": null
+    },
+    "capture-apple-pay-mada-upcoming": {
+        "userData": {
+            "email": null,
+            "name": null
+        },
+        "tokenData": null,
+        "amount": null,
+        "currency": null,
+        "recurringBookingId": null,
+        "purposeOfPayment": null,
+        "timestamp": null,
+        "idempotencyKey": null
+    },
+    "capture-apple-pay-outstanding": {
+        "userData": {
+            "email": null,
+            "name": null
+        },
+        "ApplePayTokenData": null,
+        "amount": null,
+        "currency": null,
+        "customerId": null,
+        "transactionIds": null,
+        "bookingId": null,
+        "purposeOfPayment": null,
+        "timestamp": null,
+        "idempotencyKey": null
+    }
+}

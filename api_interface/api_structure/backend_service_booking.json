@@ -1,0 +1,25 @@
+{
+    "calculate-booking-cost-structure":{},
+    "create-booking":{
+        "selectedMileage": null,
+        "upgradedMileage": null,
+        "vehicleId": null,
+        "fullInsurance": null,
+        "bookingPeriod": null,
+        "needAdditionalDriver": null,
+        "delivery": null,
+        "deliveryAddress": null,
+        "bookingDateTime": null,
+        "bookingType": null,
+        "version": null,
+        "starterFeeAmount": null,
+        "initialBookingCost": null,
+        "promoCode": null,
+        "signatureImage": null,
+        "isPaymentPending": null
+    },
+    "cancel-booking":{
+        "bookingId": null,
+        "reasonForRejection": "too expensive"
+      }
+}

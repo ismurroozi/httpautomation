@@ -1,0 +1,78 @@
+{
+    "calculate-booking-cost-structure-swap":{
+        "statusCode": 200,
+        "message": "Success",
+        "data": {
+            "monthlyFee": 2280,
+            "monthlyBasePricing": 2280,
+            "starterFee": 0,
+            "bookingPeriod": 1,
+            "upgradedMileage": false,
+            "mileageCost": 0,
+            "selectedMileage": "3000",
+            "fixedStarterFee": null,
+            "fullInsurance": false,
+            "fullInsuranceAmount": 350,
+            "unitAdditionalDriverAmount": 0,
+            "additionalDriverAmount": 0,
+            "promoDiscountAmount": 0,
+            "swapCostStructure": {
+                "swapDateTime": "2022-11-10T00:00:00.000Z",
+                "currency": "AED",
+                "swappedBookingRate": 1720,
+                "creditAmount": 1376,
+                "swapPayableAmount": 936,
+                "earlyTerminationFee": 390,
+                "swapFee": 50,
+                "remainDays": 24,
+                "remainingValue": 1376,
+                "extraDays": 0,
+                "extraDayCost": 0
+            },
+            "payNow": 1344
+        }
+    },
+    "calculate-booking-cost-structure":{
+        "statusCode": 200,
+        "message": "Success",
+        "data": {
+            "monthlyFee": 2280,
+            "monthlyBasePricing": 2280,
+            "starterFee": 0,
+            "bookingPeriod": 1,
+            "upgradedMileage": false,
+            "mileageCost": 0,
+            "selectedMileage": "3000",
+            "fixedStarterFee": null,
+            "fullInsurance": false,
+            "fullInsuranceAmount": 350,
+            "unitAdditionalDriverAmount": 0,
+            "additionalDriverAmount": 0,
+            "promoDiscountAmount": 0,
+            "swapCostStructure": null,
+            "payNow": 2280
+        }
+    },
+    "create-booking":{
+        "selectedMileage": "2500",
+        "upgradedMileage": false,
+        "vehicleId": "63a401062c4fc7e77eed6446",
+        "fullInsurance": false,
+        "bookingPeriod": 1,
+        "needAdditionalDriver": false,
+        "delivery": false,
+        "deliveryAddress": null,
+        "bookingDateTime": "ISODate('2022-12-18T06: 00: 00.000+0000')",
+        "bookingType": 2,
+        "version": 2,
+        "starterFeeAmount": "245",
+        "initialBookingCost": 2295,
+        "promoCode": null,
+        "signatureImage": null,
+        "isPaymentPending": false
+    },
+    "cancel-booking":{
+        "bookingId": "63a2d2b4d0447efb53f86a2f",
+        "reasonForRejection": "too expensive"
+      }
+}

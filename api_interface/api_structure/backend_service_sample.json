@@ -1,0 +1,50 @@
+{
+    "add-card":{
+        "currency": "AED",
+        "cardNumber": "4242424242424242",
+        "cardHolderName": "aaaaa",
+        "cvv": "100",
+        "madaCard": false,
+        "capture": false,
+        "addDefault": 1,
+        "expiryMonth": 10,
+        "expiryYear": 26
+    },
+    "take-payment": {
+        "type": "CARD",
+        "amount": 1720,
+        "currency": "AED",
+        "bookingId": "6540bbb353a53242f11494dc",
+        "transactionIds": [
+            433140
+        ],
+        "returningBookingId": "6540bbb353a53242f11494dc",
+        "paymentInfo": {
+            "cardId": "6540bbb353a53242f11494dc",
+            "cvv": "143",
+            "sourceId": "6540bbb353a53242f11494dc",
+            "description": "string",
+            "flow": "Invoice"
+        },
+        "captureTransactionId": "",
+        "returningMetadata": {
+            "returnReasonByCustomer": "string",
+            "pickup": false,
+            "returnDate": "ISODate('2022-12-18T06: 00: 00.000+0000')"
+        }
+    },
+    "add-apple-pay-card": {
+        "type": "APPLE_PAY",
+        "currency": "AED",
+        "userId": "6540bbb353a53242f11494dc",
+        "paymentInfo": {
+            "tokenData": "as before"
+        }
+    },
+    "report-car-issue":{
+        "bookingId": "63a02d4d47e7da272970449f",
+        "issueType": "routine service",
+        "issueNote": "The car needs service. Request car servicing",
+        "issuePriority": "MEDIUM"
+    }
+}

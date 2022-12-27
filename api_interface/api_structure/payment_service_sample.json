@@ -1,0 +1,24 @@
+{
+    "add-card": {
+        "currency":"AED",
+        "cardNumber":"4242424242424242",
+        "cardHolderName":"PHILIPPE S COSTA",
+        "cvv":"500",
+        "madaCard":false,
+        "capture":false,
+        "addDefault":1,
+        "expiryMonth":10,
+        "expiryYear":26,
+        "userId":"622b3c806a51a94f70fd8ff3",
+        "userData":{
+           "name":"Philippe",
+           "email":"hereiamshreya@gmail.com",
+           "id": "622b3c806a51a94f70fd8ff3"
+        },
+         "threeDs": {
+               "enabled": true,
+               "attempt_n3d": true
+             },
+             "transactionName": "ADD_CARD"
+     }
+}

@@ -1,0 +1,139 @@
+[{
+  "_id": {
+    "$oid": "63a97751761e3e2a3fc44285"
+  },
+  "returnPickUpAddress": {
+    "addressName": null,
+    "companyAddress": null,
+    "latitude": null,
+    "longitude": null
+  },
+  "deliveryAddress": {
+    "addressName": "Dubai Investment Park - 1 - مجمع دبي للإستثمار - دبي - United Arab Emirates",
+    "companyAddress": null,
+    "latitude": 24.968844,
+    "longitude": 55.1702449,
+    "startDateTime": {
+      "$date": {
+        "$numberLong": "1672063200000"
+      }
+    },
+    "endDateTime": {
+      "$date": {
+        "$numberLong": "1672070400000"
+      }
+    }
+  },
+  "deliveryInfo": {
+    "deliveryRating": null,
+    "deliveryPopup": false,
+    "collectionRating": null,
+    "returnPopup": false
+  },
+  "checkinDocument": {
+    "original": "",
+    "thumbnail": ""
+  },
+  "checkoutDocument": {
+    "original": "",
+    "thumbnail": ""
+  },
+  "npsGathering": {
+    "step": "pending",
+    "firstGatheringResult": null,
+    "secondGatheringResult": null
+  },
+  "createdFromPaymentPending": true,
+  "serviceProviderId": {
+    "$oid": "5e3684b336feed61fe62dbe0"
+  },
+  "totalPrice": 1599,
+  "initialBookingCost": 1599,
+  "discountedPrice": null,
+  "currentStatus": "PENDING",
+  "cancelReasonByCustomer": null,
+  "returnReasonByCustomer": null,
+  "cancelReasonByServiceProvider": null,
+  "isDeleted": false,
+  "isCancelled": false,
+  "isSpRated": false,
+  "isCustomerRated": false,
+  "returnDateTime": null,
+  "delivery": false,
+  "returnPickUp": false,
+  "forceReturn": false,
+  "bookingPeriod": 9,
+  "nextPaymentDate": null,
+  "prefferedPaymentDate": {
+    "$date": {
+      "$numberLong": "1672063200000"
+    }
+  },
+  "offsetDays": 0,
+  "promoCode": null,
+  "upgradedMileage": false,
+  "selectedMileage": "2500",
+  "fullInsurance": false,
+  "amendedPendingDeliveryTime": false,
+  "amendedReturnDeliveryTime": false,
+  "currency": "AED",
+  "isPotentialForceReturn": false,
+  "isSwapped": false,
+  "earlyTerminationCharged": false,
+  "swapingFee": false,
+  "swappedFromBookingId": null,
+  "swappedToBookingId": null,
+  "restartedFromBookingId": null,
+  "invygoInsurance": false,
+  "paymentPartner": null,
+  "bookingId": 49309,
+  "starterFee": 0,
+  "bookingDateTime": {
+    "$date": {
+      "$numberLong": "1672063200000"
+    }
+  },
+  "bookingCreationDateTime": {
+    "$date": {
+      "$numberLong": "1672050513547"
+    }
+  },
+  "vehicleId": {
+    "$oid": "6399576f29d48318dad75981"
+  },
+  "customerId": {
+    "$oid": "6399b96b05675bd85bd1f0e5"
+  },
+  "monthlyFee": 1599,
+  "standardFee": 0,
+  "bookingType": 2,
+  "signatureImage": {
+    "original": "https://s3.ap-south-1.amazonaws.com/invygo-new/test/user/original_BkFUwlDKi1672050512848.png",
+    "thumbnail": "https://s3.ap-south-1.amazonaws.com/invygo-new/test/user/thumbnail_HJgYIwlPts1672050512849.png"
+  },
+  "customerName": "Marlon Panti",
+  "customerContact": "11111111",
+  "customerEmail": "roozi1@yopmail.com",
+  "vehicleBrandName": "Mitsubishi",
+  "vehicleCarName": "Attrage",
+  "vehicleManufacturingYear": "2022",
+  "vehiclePlateNumber": "DL19315",
+  "additionalDrivers": [],
+  "carType": "NORMAL",
+  "returnProof": [],
+  "createdAt": {
+    "$date": {
+      "$numberLong": "1672050513595"
+    }
+  },
+  "updatedAt": {
+    "$date": {
+      "$numberLong": "1672052311846"
+    }
+  },
+  "__v": 0,
+  "subscriptionId": {
+    "$oid": "6399bc7405675baeb3d1f801"
+  },
+  "dealerMonthlyFee": 1491
+}]

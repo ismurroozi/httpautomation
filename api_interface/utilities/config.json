@@ -1,0 +1,130 @@
+{
+    "mongo_db":{
+        "uri":"mongodb://roozi:EGUSjftsZhvy7F3k@test-shard-00-02.z9iq5.mongodb.net:27017,test-shard-00-00.z9iq5.mongodb.net:27017,test-shard-00-01.z9iq5.mongodb.net:27017/invygo-test?ssl=true&replicaSet=atlas-13adki-shard-0&readPreference=primary&connectTimeoutMS=10000&authSource=admin&authMechanism=SCRAM-SHA-1"
+    },
+    "mysql_db":{
+        "host":"dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com",
+        "username": "admin",
+        "password": "YlfRv3t27Z"
+    },
+    "payment_service": {
+        "connection_config": {
+            "host": "localhost",
+            "port": 8080,
+            "mapping":"/api/v1/payments/"
+        },
+        "api_structure": "payment_service.json",
+        "sample_api_structure": "payment_service_sample.json",
+        "db_config": {
+            "host": "",
+            "username": "",
+            "password": ""
+        }
+    },
+    "backend_service_invoice": {
+        "connection_config": {
+            "host": "test-api.invygo.com",
+            "port": 8080,
+            "mapping":"/report/v2/"
+        },
+        "api_structure": "backend_service.json",
+        "db_config": {
+            "host": "",
+            "username": "",
+            "password": ""
+        }
+    },
+    "backend_service_payment": {
+        "connection_config": {
+            "host": "test-api.invygo.com",
+            "port": 8080,
+            "mapping":"/payment/"
+        },
+        "api_structure": "backend_service.json",
+        "sample_api_structure": "backend_service_sample.json",
+        "db_config": {
+            "host": "",
+            "username": "",
+            "password": ""
+        }
+    },
+    "billing_service": {
+        "connection_config": {
+            "host": "test.invygo.com",
+            "port": 8080,
+            "mapping":"/billing/api/billing/"
+        },
+        "api_structure": "billing_service.json",
+        "sample_api_structure": "billing_service_sample.json",
+        "db_config": {
+            "host": "",
+            "username": "",
+            "password": ""
+        }
+    },
+    "billing_service_trigger_cronjob": {
+        "connection_config": {
+            "host": "test.invygo.com",
+            "port": 8080,
+            "mapping":"/billing/api/trigger/"
+        },
+        "api_structure": "billing_service.json",
+        "sample_api_structure": "billing_service_sample.json",
+        "db_config": {
+            "host": "",
+            "username": "",
+            "password": ""
+        }
+    },
+    "backend_service_booking": {
+        "connection_config": {
+            "host": "test-api.invygo.com",
+            "port": 8080,
+            "mapping":"/booking/"
+        },
+        "api_structure": "backend_service_booking.json",
+        "sample_api_structure": "backend_service_booking_sample.json",
+        "db_config": {
+            "host": "",
+            "username": "",
+            "password": ""
+        }
+    },"backend_service_service": {
+        "connection_config": {
+            "host": "test-api.invygo.com",
+            "port": 8080,
+            "mapping":"/booking/"
+        },
+        "api_structure": "backend_service.json",
+        "sample_api_structure": "backend_service_sample.json",
+        "db_config": {
+            "host": "",
+            "username": "",
+            "password": ""
+        }
+    },
+    "backend_service_create_booking": {
+        "connection_config": {
+            "host": "test-api.invygo.com",
+            "port": 8080,
+            "mapping":"/booking/"
+        },
+        "api_structure": "backend_service_booking.json",
+        "sample_api_structure": "backend_service_booking_sample.json",
+        "db_config": {
+            "host": "",
+            "username": "",
+            "password": ""
+        }
+    },
+    "add_on_template_path":{
+        "SALIK": "\\automation_framework\\api_interface\\utilities\\template_files\\salik-format.csv",
+        "TRAFFIC": "\\automation_framework\\api_interface\\utilities\\template_files\\traffic-fine-format.csv",
+        "FUEL_CHARGE": "\\automation_framework\\api_interface\\utilities\\template_files\\fuel-charge-format.csv",
+        "DAMAGE_CHARGE": "\\automation_framework\\api_interface\\utilities\\template_files\\damage-charge-format.csv",
+        "EXCEEDED_MILEAGE_CHARGE": "\\automation_framework\\api_interface\\utilities\\template_files\\exceeded-mileage-charge-format.csv"
+    },
+    "create_booking":{
+        "signature": "\\automation_framework\\api_interface\\utilities\\template_files\\tree.jpeg"
+    }
+}

@@ -1,0 +1,175 @@
+{
+    "add-card": {
+        "cardNumber": null,
+        "cvv": null,
+        "expiryMonth": null,
+        "expiryYear": null,
+        "cardHolderName": null,
+        "userId": null,
+        "userData": null,
+        "currency": null,
+        "madaCard": null,
+        "checkoutAmount": null,
+        "capture": null,
+        "captureTransactionId": null,
+        "addDefault": null
+    },
+    "accept-booking": {
+        "bookingId":null
+    },
+    "authorize-amount": {
+        "amount":null,
+        "cardId":null,
+        "currency":null,
+        "cvv":null,
+        "description":null,
+        "flow":null,
+        "sourceId":null,
+        "userData": {
+           "__v":null,
+           "_id":null,
+           "adminImage": {
+              "original":null,
+              "thumbnail": null
+           },
+           "assignedBy":null,
+           "assignedTo":null,
+           "blockBooking":null,
+           "captainID":null,
+           "companyName":null,
+           "contacts": [
+              {
+                 "_id":null,
+                 "countryCode":null,
+                 "isPrimary":null,
+                 "isVerified":null,
+                 "mobile": null
+              }
+           ],
+           "countryCode":null,
+           "countryIsoCode":null,
+           "createdAt":null,
+           "createdBy":null,
+           "cronHardDeleteCount":null,
+           "customerAddressID":null,
+           "customerID":null,
+           "driverAddressID":null,
+           "email":null,
+           "emailVerificationToken":null,
+           "emailVerificationTokenUpdatedAt":null,
+           "firstBookingReferralAwarded":null,
+           "freshchatId":null,
+           "freshdeskId":null,
+           "intercomId":null,
+           "is2FAEnabled":null,
+           "isAdminVerified":null,
+           "isBlocked":null,
+           "isDeleted":null,
+           "isEmailVerified":null,
+           "isMailSent":null,
+           "isPhoneVerified":null,
+           "isVerifiedEmail":null,
+           "language":null,
+           "lastName":null,
+           "mobile":null,
+           "mobileOTP":null,
+           "name":null,
+           "numberOfUsersReferred":null,
+           "passwordResetToken":null,
+           "pendingAmount":null,
+           "ratedByUserCount":null,
+           "receiveServiceRequestMails":null,
+           "referralCode":null,
+           "referralLink":null,
+           "referredBy":null,
+           "rememberMe":null,
+           "restoreId":null,
+           "role": [],
+           "secret":null,
+           "serviceProviderAddressID":null,
+           "serviceProviderID":null,
+           "tempCountryCode":null,
+           "tempMobile":null,
+           "totalCreatedUsers":null,
+           "totalRatingPoints":null,
+           "updatedAt":null,
+           "utcoffset":null,
+           "verifiedAt":null,
+           "verifyEmailToken":null,
+           "walletBalance": null
+        },
+        "userId":null,
+        "walletBalanceUsed": null
+     },
+    "capture-amount": {
+        "userId": null,
+        "transactionRefNumber": null,
+        "currency": null,
+        "reference": null,
+        "payRef": null,
+        "cvv": null,
+        "amount": null,
+        "transactionName": null,
+        "bookingId": null,
+        "userData": null
+    },
+    "refund-amount": {
+        "amount": null,
+        "currency": null,
+        "bookingId": null,
+        "invoiceNumber": null,
+        "transactionRefNumber": null,
+        "userData": null
+    },
+    "void-amount": {
+        "amount": null,
+        "currency": null,
+        "bookingId": null,
+        "reference": null,
+        "transactionRefNumber": null,
+        "walletBalanceUsed": null,
+        "userData": null
+    },
+    "add-apple-pay-card": {
+        "tokenData": {
+            "version": null,
+            "data": null,
+            "signature": null,
+            "header": {
+                "ephemeralPublicKey": null,
+                "publicKeyHash": null,
+                "transactionId": null
+            }
+        },
+        "currency": null,
+        "userId": null,
+        "userData": null
+    },
+    "authorize-apple-pay": {
+        "userData": null,
+        "tokenData": null,
+        "amount": null,
+        "currency": null,
+        "reserveBookingId": null
+    },
+    "capture-apple-pay-outstanding": {
+        "userData": null,
+        "tokenData": null,
+        "amount": null,
+        "currency": null,
+        "customerId": null,
+        "transactionIds": null,
+        "bookingId": null
+    },
+    "capture-apple-pay-mada-upcoming": {
+        "userData": null,
+        "tokenData": null,
+        "amount": null,
+        "currency": null,
+        "recurringBookingId": null,
+        "walletBalanceUsed": null
+    },
+    "ar-creation-for-booking": {
+        "bookingId": null
+    }
+}
