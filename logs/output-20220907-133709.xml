@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.1a2 (Python 3.10.6 on win32)" generated="20220907 13:37:09.988" rpa="false" schemaversion="3">
+<suite id="s1" name="Test Cases" source="C:\Users\ismurroozi\automation_framework\test_cases">
+<suite id="s1-s1" name="Payment Service" source="C:\Users\ismurroozi\automation_framework\test_cases\payment_service">
+<suite id="s1-s1-s1" name="Add Card" source="C:\Users\ismurroozi\automation_framework\test_cases\payment_service\add_card.robot">
+<test id="s1-s1-s1-t1" name="Add Card test case 1" line="9">
+<kw name="Add Card" library="payment_service">
+<var>${value1}</var>
+<var>${value2}</var>
+<var>@{value3}</var>
+<arg>${checkout_channel}</arg>
+<arg>${test data}</arg>
+<arg>${True}</arg>
+<msg timestamp="20220907 13:37:10.087" level="INFO">------------------------------ 
+start of case run for API add-card
+------------------------------
+Config retrieved for service payment_service add-card
+1</msg>
+<msg timestamp="20220907 13:37:10.087" level="FAIL">TypeError: 'bool' object is not callable</msg>
+<status status="FAIL" starttime="20220907 13:37:10.085" endtime="20220907 13:37:10.087"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value1}</arg>
+<arg>${415}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20220907 13:37:10.088" endtime="20220907 13:37:10.088"/>
+</kw>
+<kw name="Should Be Empty" library="BuiltIn">
+<arg>${value2}</arg>
+<doc>Verifies that the given item is empty.</doc>
+<status status="NOT RUN" starttime="20220907 13:37:10.088" endtime="20220907 13:37:10.088"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value3}[0][error]</arg>
+<arg>Unsupported Media Type</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20220907 13:37:10.088" endtime="20220907 13:37:10.088"/>
+</kw>
+<tag>smoke</tag>
+<status status="FAIL" starttime="20220907 13:37:10.084" endtime="20220907 13:37:10.089">TypeError: 'bool' object is not callable</status>
+</test>
+<status status="FAIL" starttime="20220907 13:37:10.015" endtime="20220907 13:37:10.090"/>
+</suite>
+<suite id="s1-s1-s2" name="Get Payments" source="C:\Users\ismurroozi\automation_framework\test_cases\payment_service\get_payments.robot">
+<test id="s1-s1-s2-t1" name="Get payments test case 1" line="6">
+<kw name="Get Payments" library="payment_service">
+<var>${value1}</var>
+<var>${value2}</var>
+<var>@{value3}</var>
+<arg>${tabby_channel}</arg>
+<arg>${tabby_id}</arg>
+<msg timestamp="20220907 13:37:10.471" level="INFO">------------------------------ 
+start of case run for API get-payments
+------------------------------ 
+Successfully loaded service config
+Successfully connected to localhost:8080
+Successfully sent GET request
+{"id":"a9de1573-04a3-4b27-8d28-82094d81fd3b","currency":null,"amount":null,"metadata":null,"authCode":null,"responseCode":null,"processedOn":null,"reference":null}
+Successfully decode response data
+Status: 200 and reason:  and resp data: {'id': 'a9de1573-04a3-4b27-8d28-82094d81fd3b', 'currency': None, 'amount': None, 'metadata': None, 'authCode': None, 'responseCode': None, 'processedOn': None, 'reference': None}</msg>
+<msg timestamp="20220907 13:37:10.472" level="INFO">${value1} = 200</msg>
+<msg timestamp="20220907 13:37:10.472" level="INFO">${value2} = </msg>
+<msg timestamp="20220907 13:37:10.472" level="INFO">@{value3} = [ {'id': 'a9de1573-04a3-4b27-8d28-82094d81fd3b', 'currency': None, 'amount': None, 'metadata': None, 'authCode': None, 'responseCode': None, 'processedOn': None, 'reference': None} ]</msg>
+<status status="PASS" starttime="20220907 13:37:10.098" endtime="20220907 13:37:10.472"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value1}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220907 13:37:10.473" endtime="20220907 13:37:10.474"/>
+</kw>
+<kw name="Should Be Empty" library="BuiltIn">
+<arg>${value2}</arg>
+<doc>Verifies that the given item is empty.</doc>
+<msg timestamp="20220907 13:37:10.474" level="INFO">Length is 0</msg>
+<status status="PASS" starttime="20220907 13:37:10.474" endtime="20220907 13:37:10.475"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value3}[0][id]</arg>
+<arg>a9de1573-04a3-4b27-8d28-82094d81fd3b</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220907 13:37:10.475" endtime="20220907 13:37:10.475"/>
+</kw>
+<tag>smoke</tag>
+<status status="PASS" starttime="20220907 13:37:10.097" endtime="20220907 13:37:10.476"/>
+</test>
+<test id="s1-s1-s2-t2" name="Get payments test case 2" line="13">
+<kw name="Get Payments" library="payment_service">
+<var>${value1}</var>
+<var>${value2}</var>
+<var>@{value3}</var>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20220907 13:37:10.486" level="INFO">------------------------------ 
+start of case run for API get-payments
+------------------------------ 
+Successfully loaded service config
+Successfully connected to localhost:8080
+Successfully sent GET request
+{"timestamp":"2022-09-07T09:37:10.485+00:00","status":404,"error":"Not Found","path":"/api/v1/payments//"}
+Successfully decode response data
+Status: 404 and reason:  and resp data: {'timestamp': '2022-09-07T09:37:10.485+00:00', 'status': 404, 'error': 'Not Found', 'path': '/api/v1/payments//'}</msg>
+<msg timestamp="20220907 13:37:10.486" level="INFO">${value1} = 404</msg>
+<msg timestamp="20220907 13:37:10.486" level="INFO">${value2} = </msg>
+<msg timestamp="20220907 13:37:10.486" level="INFO">@{value3} = [ {'timestamp': '2022-09-07T09:37:10.485+00:00', 'status': 404, 'error': 'Not Found', 'path': '/api/v1/payments//'} ]</msg>
+<status status="PASS" starttime="20220907 13:37:10.479" endtime="20220907 13:37:10.486"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value1}</arg>
+<arg>${404}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220907 13:37:10.487" endtime="20220907 13:37:10.487"/>
+</kw>
+<kw name="Should Be Empty" library="BuiltIn">
+<arg>${value2}</arg>
+<doc>Verifies that the given item is empty.</doc>
+<msg timestamp="20220907 13:37:10.488" level="INFO">Length is 0</msg>
+<status status="PASS" starttime="20220907 13:37:10.488" endtime="20220907 13:37:10.488"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${value3}[0][error]</arg>
+<arg>Not Found</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20220907 13:37:10.489" endtime="20220907 13:37:10.489"/>
+</kw>
+<tag>smoke</tag>
+<status status="PASS" starttime="20220907 13:37:10.478" endtime="20220907 13:37:10.489"/>
+</test>
+<status status="PASS" starttime="20220907 13:37:10.092" endtime="20220907 13:37:10.491"/>
+</suite>
+<status status="FAIL" starttime="20220907 13:37:10.012" endtime="20220907 13:37:10.492"/>
+</suite>
+<status status="FAIL" starttime="20220907 13:37:09.989" endtime="20220907 13:37:10.495"/>
+</suite>
+<statistics>
+<total>
+<stat pass="2" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="2" fail="1" skip="0">smoke</stat>
+</tag>
+<suite>
+<stat pass="2" fail="1" skip="0" id="s1" name="Test Cases">Test Cases</stat>
+<stat pass="2" fail="1" skip="0" id="s1-s1" name="Payment Service">Test Cases.Payment Service</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1-s1" name="Add Card">Test Cases.Payment Service.Add Card</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1-s2" name="Get Payments">Test Cases.Payment Service.Get Payments</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

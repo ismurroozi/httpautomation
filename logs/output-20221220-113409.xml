@@ -1,0 +1,1814 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.1a2 (Python 3.10.6 on win32)" generated="20221220 11:34:09.754" rpa="false" schemaversion="3">
+<suite id="s1" name="Calculate Booking Cost Structure" source="C:\Users\ismurroozi\automation_framework\test_cases\backend_service\calculate_booking_cost_structure.robot">
+<test id="s1-t1" name="Calculate Booking Cost Structure 1 Valid Data, No Swap" line="19">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${valid_data_noaddon}</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:11.774" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=1 || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 200 and reason: OK and resp data: {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1450, 'monthlyBasePricing': 1450, 'starterFee': 0, 'bookingPeriod': 1, 'mileageCost': 0, 'selectedMileage': '3000', 'fixedStarterFee': None, 'fullInsurance': False, 'fullInsuranceAmount': 160, 'unitAdditionalDriverAmount': 0, 'additionalDriverAmount': 0, 'promoDiscountAmount': 0, 'swapCostStructure': None, 'currentWalletBalance': 0, 'currentWalletBalanceUsed': 0, 'creditAmount': 0, 'payNow': 1450}}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:11.775" level="INFO">${code} = 200</msg>
+<msg timestamp="20221220 11:34:11.776" level="INFO">${status} = OK</msg>
+<msg timestamp="20221220 11:34:11.776" level="INFO">@{respdata} = [ {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1450, 'monthlyBasePricing': 1450, 'starterFee': 0, 'bookingPeriod': 1, 'mileageCost': 0, 'selectedMileage': '3000', 'fixedStarterFee'...</msg>
+<msg timestamp="20221220 11:34:11.776" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:11.776" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:11.776" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:09.968" endtime="20221220 11:34:11.776"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:11.778" endtime="20221220 11:34:11.780"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:11.781" endtime="20221220 11:34:11.782"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][pricingData][oneMonth][basePrice] + ${0}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221220 11:34:11.784" level="INFO">${correct_monthly} = 1450</msg>
+<status status="PASS" starttime="20221220 11:34:11.782" endtime="20221220 11:34:11.784"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:11.785" endtime="20221220 11:34:11.786"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:11.786" endtime="20221220 11:34:11.787"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:11.787" endtime="20221220 11:34:11.788"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:11.788" endtime="20221220 11:34:11.789"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalanceUsed]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:11.790" endtime="20221220 11:34:11.793"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="PASS" starttime="20221220 11:34:09.968" endtime="20221220 11:34:11.797"/>
+</test>
+<test id="s1-t2" name="Calculate Booking Cost Structure 2 Invalid vehicleId, No Swap" line="31">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${invalid_vehicle_id}</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:13.102" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=111111111111111111111111&amp;selectedMileage=3000&amp;bookingPeriod=1 || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 400 and reason: Bad Request and resp data: {'statusCode': 400, 'error': 'Bad Request', 'message': 'Vehicle / Pricing not found'}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('111111111111111111111111')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:13.102" level="INFO">${code} = 400</msg>
+<msg timestamp="20221220 11:34:13.102" level="INFO">${status} = Bad Request</msg>
+<msg timestamp="20221220 11:34:13.102" level="INFO">@{respdata} = [ {'statusCode': 400, 'error': 'Bad Request', 'message': 'Vehicle / Pricing not found'} ]</msg>
+<msg timestamp="20221220 11:34:13.103" level="INFO">${vehicle_data_db} = []</msg>
+<msg timestamp="20221220 11:34:13.103" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:13.103" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:11.801" endtime="20221220 11:34:13.103"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${400}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:13.104" endtime="20221220 11:34:13.106"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>Bad Request</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:13.107" endtime="20221220 11:34:13.108"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][message]</arg>
+<arg>Vehicle / Pricing not found</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:13.110" endtime="20221220 11:34:13.111"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="PASS" starttime="20221220 11:34:11.799" endtime="20221220 11:34:13.113"/>
+</test>
+<test id="s1-t3" name="Calculate Booking Cost Structure 3 Valid Data, No Swap, extra mileage" line="38">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${valid_data_mileage}</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:14.922" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;upgradedMileage=true&amp;bookingPeriod=1 || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 200 and reason: OK and resp data: {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1605, 'monthlyBasePricing': 1450, 'starterFee': 0, 'bookingPeriod': 1, 'upgradedMileage': True, 'mileageCost': 155, 'selectedMileage': '3000', 'fixedStarterFee': None, 'fullInsurance': False, 'fullInsuranceAmount': 160, 'unitAdditionalDriverAmount': 0, 'additionalDriverAmount': 0, 'promoDiscountAmount': 0, 'swapCostStructure': None, 'currentWalletBalance': 0, 'currentWalletBalanceUsed': 0, 'creditAmount': 0, 'payNow': 1605}}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:14.923" level="INFO">${code} = 200</msg>
+<msg timestamp="20221220 11:34:14.923" level="INFO">${status} = OK</msg>
+<msg timestamp="20221220 11:34:14.923" level="INFO">@{respdata} = [ {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1605, 'monthlyBasePricing': 1450, 'starterFee': 0, 'bookingPeriod': 1, 'upgradedMileage': True, 'mileageCost': 155, 'selectedMileage'...</msg>
+<msg timestamp="20221220 11:34:14.924" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:14.924" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:14.924" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:13.118" endtime="20221220 11:34:14.924"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:14.926" endtime="20221220 11:34:14.929"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:14.935" endtime="20221220 11:34:14.936"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][pricingData][oneMonth][extraMileagePrice] + ${0}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221220 11:34:14.939" level="INFO">${correct_monthly} = 1605</msg>
+<status status="PASS" starttime="20221220 11:34:14.937" endtime="20221220 11:34:14.939"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:14.939" endtime="20221220 11:34:14.941"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:14.942" endtime="20221220 11:34:14.943"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:14.943" endtime="20221220 11:34:14.946"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:14.947" endtime="20221220 11:34:14.949"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalanceUsed]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:14.950" endtime="20221220 11:34:14.952"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="PASS" starttime="20221220 11:34:13.116" endtime="20221220 11:34:14.953"/>
+</test>
+<test id="s1-t4" name="Calculate Booking Cost Structure 4 Valid Data, No Swap, extra mileage, insurance" line="50">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${valid_data_mileage_insurance}</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:16.489" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;upgradedMileage=true&amp;bookingPeriod=1&amp;fullInsurance=true || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 200 and reason: OK and resp data: {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1765, 'monthlyBasePricing': 1450, 'starterFee': 0, 'bookingPeriod': 1, 'upgradedMileage': True, 'mileageCost': 155, 'selectedMileage': '3000', 'fixedStarterFee': None, 'fullInsurance': True, 'fullInsuranceAmount': 160, 'unitAdditionalDriverAmount': 0, 'additionalDriverAmount': 0, 'promoDiscountAmount': 0, 'swapCostStructure': None, 'currentWalletBalance': 0, 'currentWalletBalanceUsed': 0, 'creditAmount': 0, 'payNow': 1765}}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:16.489" level="INFO">${code} = 200</msg>
+<msg timestamp="20221220 11:34:16.489" level="INFO">${status} = OK</msg>
+<msg timestamp="20221220 11:34:16.490" level="INFO">@{respdata} = [ {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1765, 'monthlyBasePricing': 1450, 'starterFee': 0, 'bookingPeriod': 1, 'upgradedMileage': True, 'mileageCost': 155, 'selectedMileage'...</msg>
+<msg timestamp="20221220 11:34:16.490" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:16.490" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:16.490" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:14.961" endtime="20221220 11:34:16.490"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:16.491" endtime="20221220 11:34:16.493"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:16.494" endtime="20221220 11:34:16.494"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][pricingData][oneMonth][extraMileagePrice] + ${vehicle_data_db}[0][pricingData][fullInsurance]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221220 11:34:16.496" level="INFO">${correct_monthly} = 1765</msg>
+<status status="PASS" starttime="20221220 11:34:16.495" endtime="20221220 11:34:16.496"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:16.496" endtime="20221220 11:34:16.497"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:16.497" endtime="20221220 11:34:16.497"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:16.498" endtime="20221220 11:34:16.500"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:16.500" endtime="20221220 11:34:16.504"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalanceUsed]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:16.504" endtime="20221220 11:34:16.506"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="PASS" starttime="20221220 11:34:14.956" endtime="20221220 11:34:16.506"/>
+</test>
+<test id="s1-t5" name="Calculate Booking Cost Structure 5 Valid Data, No Swap, extra mileage, insurance, driver" line="62">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${valid_data_mileage_insurance_driver}</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:18.095" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;upgradedMileage=true&amp;bookingPeriod=1&amp;fullInsurance=true&amp;numOfAdditionalDriver=1 || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 200 and reason: OK and resp data: {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1935, 'monthlyBasePricing': 1450, 'starterFee': 0, 'bookingPeriod': 1, 'upgradedMileage': True, 'mileageCost': 155, 'selectedMileage': '3000', 'fixedStarterFee': None, 'fullInsurance': True, 'fullInsuranceAmount': 160, 'unitAdditionalDriverAmount': 1, 'additionalDriverAmount': 170, 'promoDiscountAmount': 0, 'swapCostStructure': None, 'currentWalletBalance': 0, 'currentWalletBalanceUsed': 0, 'creditAmount': 0, 'payNow': 1935}}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:18.096" level="INFO">${code} = 200</msg>
+<msg timestamp="20221220 11:34:18.097" level="INFO">${status} = OK</msg>
+<msg timestamp="20221220 11:34:18.097" level="INFO">@{respdata} = [ {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1935, 'monthlyBasePricing': 1450, 'starterFee': 0, 'bookingPeriod': 1, 'upgradedMileage': True, 'mileageCost': 155, 'selectedMileage'...</msg>
+<msg timestamp="20221220 11:34:18.097" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:18.098" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:18.098" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:16.509" endtime="20221220 11:34:18.099"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:18.101" endtime="20221220 11:34:18.105"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:18.106" endtime="20221220 11:34:18.107"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][pricingData][oneMonth][extraMileagePrice] + ${vehicle_data_db}[0][pricingData][fullInsurance] + ${vehicle_data_db}[0][pricingData][secondaryDriver]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221220 11:34:18.110" level="INFO">${correct_monthly} = 1935.0</msg>
+<status status="PASS" starttime="20221220 11:34:18.108" endtime="20221220 11:34:18.110"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:18.115" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'float'&gt;</msg>
+<status status="PASS" starttime="20221220 11:34:18.111" endtime="20221220 11:34:18.115"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:18.119" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'float'&gt;</msg>
+<status status="PASS" starttime="20221220 11:34:18.117" endtime="20221220 11:34:18.119"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:18.120" endtime="20221220 11:34:18.122"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:18.123" endtime="20221220 11:34:18.125"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalanceUsed]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:18.126" endtime="20221220 11:34:18.130"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="PASS" starttime="20221220 11:34:16.509" endtime="20221220 11:34:18.135"/>
+</test>
+<test id="s1-t6" name="Calculate Booking Cost Structure 6 Valid Data, No Swap, promocode" line="74">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${valid_data_noaddon_promocode}</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:20.575" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;upgradedMileage=false&amp;bookingPeriod=1&amp;fullInsurance=false&amp;numOfAdditionalDriver=0&amp;promoCode=ROOZITEST || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 200 and reason: OK and resp data: {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1450, 'monthlyBasePricing': 1450, 'starterFee': 0, 'bookingPeriod': 1, 'upgradedMileage': False, 'mileageCost': 0, 'selectedMileage': '3000', 'fixedStarterFee': None, 'fullInsurance': False, 'fullInsuranceAmount': 160, 'unitAdditionalDriverAmount': 0, 'additionalDriverAmount': 0, 'promoDiscountAmount': 100, 'swapCostStructure': None, 'currentWalletBalance': 0, 'currentWalletBalanceUsed': 0, 'creditAmount': 0, 'payNow': 1350}}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': 'ROOZITEST'}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:20.576" level="INFO">${code} = 200</msg>
+<msg timestamp="20221220 11:34:20.576" level="INFO">${status} = OK</msg>
+<msg timestamp="20221220 11:34:20.576" level="INFO">@{respdata} = [ {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1450, 'monthlyBasePricing': 1450, 'starterFee': 0, 'bookingPeriod': 1, 'upgradedMileage': False, 'mileageCost': 0, 'selectedMileage':...</msg>
+<msg timestamp="20221220 11:34:20.576" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:20.576" level="INFO">${promo_data_db} = [{'_id': ObjectId('63a048fb47e7da22cc709525'), 'type': 'PROMOTIONCODE', 'isEnabled': True, 'isDeleted': False, 'name': 'roozi test', 'code': 'ROOZITEST', 'locking': [], 'restriction': [], 'reward': [{...</msg>
+<msg timestamp="20221220 11:34:20.576" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:18.139" endtime="20221220 11:34:20.576"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:20.577" endtime="20221220 11:34:20.578"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:20.579" endtime="20221220 11:34:20.580"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][pricingData][oneMonth][basePrice] + ${0}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221220 11:34:20.581" level="INFO">${correct_monthly} = 1450</msg>
+<status status="PASS" starttime="20221220 11:34:20.580" endtime="20221220 11:34:20.581"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_paynow}</var>
+<arg>${vehicle_data_db}[0][pricingData][oneMonth][basePrice] - ${promo_data_db}[0][reward][0][value]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221220 11:34:20.583" level="INFO">${correct_paynow} = 1350</msg>
+<status status="PASS" starttime="20221220 11:34:20.582" endtime="20221220 11:34:20.583"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:20.584" endtime="20221220 11:34:20.585"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${correct_paynow}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:20.586" endtime="20221220 11:34:20.587"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:20.587" endtime="20221220 11:34:20.588"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:20.589" endtime="20221220 11:34:20.590"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalanceUsed]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:20.590" endtime="20221220 11:34:20.592"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="PASS" starttime="20221220 11:34:18.137" endtime="20221220 11:34:20.593"/>
+</test>
+<test id="s1-t7" name="Calculate Booking Cost Structure 7 Valid Data, No Swap, promocode, 6 months" line="87">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${valid_data_noaddon_promocode_6months}</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:22.222" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=6&amp;promoCode=ROOZITEST || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 200 and reason: OK and resp data: {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1400, 'monthlyBasePricing': 1400, 'starterFee': 0, 'bookingPeriod': 6, 'mileageCost': 0, 'selectedMileage': '3000', 'fixedStarterFee': None, 'fullInsurance': False, 'fullInsuranceAmount': 160, 'unitAdditionalDriverAmount': 0, 'additionalDriverAmount': 0, 'promoDiscountAmount': 100, 'swapCostStructure': None, 'currentWalletBalance': 0, 'currentWalletBalanceUsed': 0, 'creditAmount': 0, 'payNow': 1300}}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': 'ROOZITEST'}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:22.223" level="INFO">${code} = 200</msg>
+<msg timestamp="20221220 11:34:22.223" level="INFO">${status} = OK</msg>
+<msg timestamp="20221220 11:34:22.223" level="INFO">@{respdata} = [ {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1400, 'monthlyBasePricing': 1400, 'starterFee': 0, 'bookingPeriod': 6, 'mileageCost': 0, 'selectedMileage': '3000', 'fixedStarterFee'...</msg>
+<msg timestamp="20221220 11:34:22.223" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:22.223" level="INFO">${promo_data_db} = [{'_id': ObjectId('63a048fb47e7da22cc709525'), 'type': 'PROMOTIONCODE', 'isEnabled': True, 'isDeleted': False, 'name': 'roozi test', 'code': 'ROOZITEST', 'locking': [], 'restriction': [], 'reward': [{...</msg>
+<msg timestamp="20221220 11:34:22.223" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:20.597" endtime="20221220 11:34:22.223"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:22.224" endtime="20221220 11:34:22.226"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:22.226" endtime="20221220 11:34:22.227"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][pricingData][sixMonth][basePrice] + ${0}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221220 11:34:22.228" level="INFO">${correct_monthly} = 1400</msg>
+<status status="PASS" starttime="20221220 11:34:22.227" endtime="20221220 11:34:22.228"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_paynow}</var>
+<arg>${vehicle_data_db}[0][pricingData][sixMonth][basePrice] - ${promo_data_db}[0][reward][0][value]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221220 11:34:22.230" level="INFO">${correct_paynow} = 1300</msg>
+<status status="PASS" starttime="20221220 11:34:22.229" endtime="20221220 11:34:22.230"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:22.231" endtime="20221220 11:34:22.232"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${correct_paynow}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:22.232" endtime="20221220 11:34:22.233"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:22.233" endtime="20221220 11:34:22.233"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:22.234" endtime="20221220 11:34:22.234"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalanceUsed]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:22.235" endtime="20221220 11:34:22.236"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="PASS" starttime="20221220 11:34:20.596" endtime="20221220 11:34:22.237"/>
+</test>
+<test id="s1-t8" name="Calculate Booking Cost Structure 8 Invalid swap" line="100">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${default_swap}</arg>
+<arg>SWAPPED_CAR</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:24.255" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully updated data in db: invygo-test, table: bookings, with query: {'_id': ObjectId('638477ee9409f940f5f8419a')}, and new data: {'$set': {'bookingDateTime': datetime.datetime(2022, 12, 20, 11, 34, 22, 243934)}}
+swapInfo={"swappedBookingId":"636397b6aceb2e0a71995c77","swapDateTime":"2022-12-21"}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=1&amp;isSwap=true&amp;swapInfo={"swappedBookingId":"636397b6aceb2e0a71995c77","swapDateTime":"2022-12-21"} || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 404 and reason: Not Found and resp data: {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:24.256" level="INFO">${code} = 404</msg>
+<msg timestamp="20221220 11:34:24.256" level="INFO">${status} = Not Found</msg>
+<msg timestamp="20221220 11:34:24.256" level="INFO">@{respdata} = [ {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'} ]</msg>
+<msg timestamp="20221220 11:34:24.256" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:24.256" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:24.256" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:22.242" endtime="20221220 11:34:24.257"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${406}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:24.259" level="FAIL">404 != 406</msg>
+<status status="FAIL" starttime="20221220 11:34:24.258" endtime="20221220 11:34:24.260"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>Not Acceptable</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:24.261" endtime="20221220 11:34:24.261"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${respdata}[0][message]</arg>
+<arg>is already created as swapped.</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:24.262" endtime="20221220 11:34:24.262"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="FAIL" starttime="20221220 11:34:22.239" endtime="20221220 11:34:24.263">404 != 406</status>
+</test>
+<test id="s1-t9" name="Calculate Booking Cost Structure 9 Invalid swap, no swap data" line="107">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${default_swap}</arg>
+<arg>${EMPTY}</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:25.599" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=1&amp;isSwap=true || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 400 and reason: Bad Request and resp data: {'statusCode': 400, 'error': 'Bad Request', 'message': 'Swapped Booking Id Not Found'}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:25.600" level="INFO">${code} = 400</msg>
+<msg timestamp="20221220 11:34:25.600" level="INFO">${status} = Bad Request</msg>
+<msg timestamp="20221220 11:34:25.600" level="INFO">@{respdata} = [ {'statusCode': 400, 'error': 'Bad Request', 'message': 'Swapped Booking Id Not Found'} ]</msg>
+<msg timestamp="20221220 11:34:25.600" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:25.600" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:25.600" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:24.268" endtime="20221220 11:34:25.600"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${400}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:25.601" endtime="20221220 11:34:25.602"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>Bad Request</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:25.603" endtime="20221220 11:34:25.603"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][message]</arg>
+<arg>Swapped Booking Id Not Found</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:25.605" endtime="20221220 11:34:25.605"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="PASS" starttime="20221220 11:34:24.265" endtime="20221220 11:34:25.606"/>
+</test>
+<test id="s1-t10" name="Calculate Booking Cost Structure 10 Invalid swap, booking id not found" line="114">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${default_swap}</arg>
+<arg>NOT_FOUND_BOOKING</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:27.698" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully updated data in db: invygo-test, table: bookings, with query: {'_id': ObjectId('638477ee9409f940f5f8419a')}, and new data: {'$set': {'bookingDateTime': datetime.datetime(2022, 12, 20, 11, 34, 25, 609247)}}
+swapInfo={"swappedBookingId":"111111111111111111111111","swapDateTime":"2022-12-21"}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=1&amp;isSwap=true&amp;swapInfo={"swappedBookingId":"111111111111111111111111","swapDateTime":"2022-12-21"} || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 404 and reason: Not Found and resp data: {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:27.698" level="INFO">${code} = 404</msg>
+<msg timestamp="20221220 11:34:27.698" level="INFO">${status} = Not Found</msg>
+<msg timestamp="20221220 11:34:27.698" level="INFO">@{respdata} = [ {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'} ]</msg>
+<msg timestamp="20221220 11:34:27.699" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:27.699" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:27.699" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:25.609" endtime="20221220 11:34:27.699"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${404}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:27.700" endtime="20221220 11:34:27.702"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>Not Found</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:27.703" endtime="20221220 11:34:27.704"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][message]</arg>
+<arg>Booking data not found</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:27.706" endtime="20221220 11:34:27.707"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="PASS" starttime="20221220 11:34:25.607" endtime="20221220 11:34:27.710"/>
+</test>
+<test id="s1-t11" name="Calculate Booking Cost Structure 11 Invalid swap, first month booking" line="121">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${default_swap}</arg>
+<arg>FIRST_MONTH_BOOKING</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:29.648" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully updated data in db: invygo-test, table: bookings, with query: {'_id': ObjectId('638477ee9409f940f5f8419a')}, and new data: {'$set': {'bookingDateTime': datetime.datetime(2022, 12, 20, 11, 34, 27, 718988)}}
+swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2022-12-21"}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=1&amp;isSwap=true&amp;swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2022-12-21"} || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 404 and reason: Not Found and resp data: {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:29.649" level="INFO">${code} = 404</msg>
+<msg timestamp="20221220 11:34:29.649" level="INFO">${status} = Not Found</msg>
+<msg timestamp="20221220 11:34:29.649" level="INFO">@{respdata} = [ {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'} ]</msg>
+<msg timestamp="20221220 11:34:29.649" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:29.649" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:29.649" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:27.718" endtime="20221220 11:34:29.649"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${422}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:29.652" level="FAIL">404 != 422</msg>
+<status status="FAIL" starttime="20221220 11:34:29.650" endtime="20221220 11:34:29.652"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>Unprocessable Entity</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:29.653" endtime="20221220 11:34:29.653"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][message]</arg>
+<arg>Swap date is within the first month</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:29.654" endtime="20221220 11:34:29.654"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="FAIL" starttime="20221220 11:34:27.717" endtime="20221220 11:34:29.655">404 != 422</status>
+</test>
+<test id="s1-t12" name="Calculate Booking Cost Structure 12 Invalid swap, Remaining days is greater than 31" line="128">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${default_swap}</arg>
+<arg>SWAP_40DAYS_BEFORE_NEXTPAYMENTDATE</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:31.471" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully updated data in db: invygo-test, table: bookings, with query: {'_id': ObjectId('638477ee9409f940f5f8419a')}, and new data: {'$set': {'bookingDateTime': datetime.datetime(2022, 8, 22, 11, 34, 29, 662388), 'nextPaymentDate': datetime.datetime(2023, 1, 19, 11, 34, 29, 662388)}}
+swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2022-12-05"}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=1&amp;isSwap=true&amp;swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2022-12-05"} || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 404 and reason: Not Found and resp data: {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:31.472" level="INFO">${code} = 404</msg>
+<msg timestamp="20221220 11:34:31.472" level="INFO">${status} = Not Found</msg>
+<msg timestamp="20221220 11:34:31.472" level="INFO">@{respdata} = [ {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'} ]</msg>
+<msg timestamp="20221220 11:34:31.473" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:31.473" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:31.473" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:29.661" endtime="20221220 11:34:31.473"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${406}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:31.477" level="FAIL">404 != 406</msg>
+<status status="FAIL" starttime="20221220 11:34:31.475" endtime="20221220 11:34:31.477"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>Not Acceptable</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:31.478" endtime="20221220 11:34:31.478"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][message]</arg>
+<arg>Remaining days is greater than 31</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:31.479" endtime="20221220 11:34:31.479"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="FAIL" starttime="20221220 11:34:29.659" endtime="20221220 11:34:31.481">404 != 406</status>
+</test>
+<test id="s1-t13" name="Calculate Booking Cost Structure 13 Valid swap, swap after recurring paid, paynow+, credit_amount 0" line="135">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${default_swap}</arg>
+<arg>SWAP_AFTER_RECURRING_PAYNOW+</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:33.535" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully updated data in db: invygo-test, table: bookings, with query: {'_id': ObjectId('638477ee9409f940f5f8419a')}, and new data: {'$set': {'bookingDateTime': datetime.datetime(2022, 8, 22, 11, 34, 31, 488670), 'nextPaymentDate': datetime.datetime(2023, 1, 19, 11, 34, 31, 488670)}}
+swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2022-12-30"}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=1&amp;isSwap=true&amp;swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2022-12-30"} || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 404 and reason: Not Found and resp data: {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:33.535" level="INFO">${code} = 404</msg>
+<msg timestamp="20221220 11:34:33.535" level="INFO">${status} = Not Found</msg>
+<msg timestamp="20221220 11:34:33.536" level="INFO">@{respdata} = [ {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'} ]</msg>
+<msg timestamp="20221220 11:34:33.536" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:33.536" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:33.536" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:31.487" endtime="20221220 11:34:33.536"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:33.539" level="FAIL">404 != 200</msg>
+<status status="FAIL" starttime="20221220 11:34:33.538" endtime="20221220 11:34:33.540"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:33.540" endtime="20221220 11:34:33.541"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][pricingData][oneMonth][basePrice] + ${0}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:33.542" endtime="20221220 11:34:33.542"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_paynow}</var>
+<arg>math.floor(${vehicle_data_db}[0][pricingData][oneMonth][basePrice] + ${respdata}[0][data][swapCostStructure][earlyTerminationFee] + ${respdata}[0][data][swapCostStructure][swapFee]+ ${respdata}[0][data][swapCostStructure][extraDayCost] - ${respdata}[0][data][swapCostStructure][remainingValue])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:33.543" endtime="20221220 11:34:33.543"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:33.544" endtime="20221220 11:34:33.544"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${correct_paynow}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:33.545" endtime="20221220 11:34:33.545"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:33.546" endtime="20221220 11:34:33.546"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][creditAmount]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:33.547" endtime="20221220 11:34:33.547"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][swapCostStructure][extraDayCost]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:33.548" endtime="20221220 11:34:33.549"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][swapCostStructure][swapFee]</arg>
+<arg>${50}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:33.549" endtime="20221220 11:34:33.549"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:33.550" endtime="20221220 11:34:33.550"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalanceUsed]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:33.551" endtime="20221220 11:34:33.551"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="FAIL" starttime="20221220 11:34:31.485" endtime="20221220 11:34:33.551">404 != 200</status>
+</test>
+<test id="s1-t14" name="Calculate Booking Cost Structure 14 Valid swap, swap after recurring paid, paynow 0, credit_amount +" line="151">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${default_swap}</arg>
+<arg>SWAP_AFTER_RECURRING_PAYNOW0</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:35.986" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully updated data in db: invygo-test, table: bookings, with query: {'_id': ObjectId('638477ee9409f940f5f8419a')}, and new data: {'$set': {'bookingDateTime': datetime.datetime(2022, 8, 22, 11, 34, 33, 558893), 'nextPaymentDate': datetime.datetime(2023, 1, 19, 11, 34, 33, 558893)}}
+swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2022-12-25"}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=1&amp;isSwap=true&amp;swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2022-12-25"} || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 404 and reason: Not Found and resp data: {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:35.986" level="INFO">${code} = 404</msg>
+<msg timestamp="20221220 11:34:35.986" level="INFO">${status} = Not Found</msg>
+<msg timestamp="20221220 11:34:35.986" level="INFO">@{respdata} = [ {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'} ]</msg>
+<msg timestamp="20221220 11:34:35.986" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:35.986" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:35.986" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:33.557" endtime="20221220 11:34:35.986"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:35.989" level="FAIL">404 != 200</msg>
+<status status="FAIL" starttime="20221220 11:34:35.987" endtime="20221220 11:34:35.989"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:35.990" endtime="20221220 11:34:35.990"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][pricingData][oneMonth][basePrice] + ${0}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:35.992" endtime="20221220 11:34:35.992"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_credit_amount}</var>
+<arg>math.floor(${vehicle_data_db}[0][pricingData][oneMonth][basePrice] + ${respdata}[0][data][swapCostStructure][earlyTerminationFee] + ${respdata}[0][data][swapCostStructure][swapFee]+ ${respdata}[0][data][swapCostStructure][extraDayCost] - ${respdata}[0][data][swapCostStructure][remainingValue])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:35.993" endtime="20221220 11:34:35.993"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:35.995" endtime="20221220 11:34:35.995"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:35.996" endtime="20221220 11:34:35.996"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:35.997" endtime="20221220 11:34:35.998"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][creditAmount]</arg>
+<arg>${correct_credit_amount}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:35.999" endtime="20221220 11:34:35.999"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][swapCostStructure][extraDayCost]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:36.000" endtime="20221220 11:34:36.000"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][swapCostStructure][swapFee]</arg>
+<arg>${50}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:36.001" endtime="20221220 11:34:36.001"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:36.001" endtime="20221220 11:34:36.001"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalanceUsed]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:36.001" endtime="20221220 11:34:36.001"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="FAIL" starttime="20221220 11:34:33.553" endtime="20221220 11:34:36.002">404 != 200</status>
+</test>
+<test id="s1-t15" name="Calculate Booking Cost Structure 15 Valid swap, one day before recurring" line="167">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${default_swap}</arg>
+<arg>SWAP_ONE_DAY_BEFORE_RECURRING</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:39.004" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully updated data in db: invygo-test, table: bookings, with query: {'_id': ObjectId('638477ee9409f940f5f8419a')}, and new data: {'$set': {'bookingDateTime': datetime.datetime(2022, 8, 22, 11, 34, 36, 7240), 'nextPaymentDate': datetime.datetime(2023, 1, 19, 11, 34, 36, 7240)}}
+swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2023-01-18"}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=1&amp;isSwap=true&amp;swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2023-01-18"} || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 404 and reason: Not Found and resp data: {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:39.004" level="INFO">${code} = 404</msg>
+<msg timestamp="20221220 11:34:39.004" level="INFO">${status} = Not Found</msg>
+<msg timestamp="20221220 11:34:39.005" level="INFO">@{respdata} = [ {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'} ]</msg>
+<msg timestamp="20221220 11:34:39.005" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:39.005" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:39.005" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:36.006" endtime="20221220 11:34:39.005"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:39.008" level="FAIL">404 != 200</msg>
+<status status="FAIL" starttime="20221220 11:34:39.006" endtime="20221220 11:34:39.008"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:39.010" endtime="20221220 11:34:39.010"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][pricingData][oneMonth][basePrice] + ${0}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:39.011" endtime="20221220 11:34:39.011"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_paynow}</var>
+<arg>math.floor(${vehicle_data_db}[0][pricingData][oneMonth][basePrice] + ${respdata}[0][data][swapCostStructure][earlyTerminationFee] + ${respdata}[0][data][swapCostStructure][swapFee]+ ${respdata}[0][data][swapCostStructure][extraDayCost] - ${respdata}[0][data][swapCostStructure][remainingValue])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:39.012" endtime="20221220 11:34:39.012"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:39.013" endtime="20221220 11:34:39.013"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${correct_paynow}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:39.014" endtime="20221220 11:34:39.014"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:39.015" endtime="20221220 11:34:39.015"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][creditAmount]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:39.016" endtime="20221220 11:34:39.017"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][swapCostStructure][extraDayCost]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:39.018" endtime="20221220 11:34:39.018"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][swapCostStructure][swapFee]</arg>
+<arg>${50}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:39.018" endtime="20221220 11:34:39.018"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:39.019" endtime="20221220 11:34:39.019"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalanceUsed]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:39.020" endtime="20221220 11:34:39.020"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="FAIL" starttime="20221220 11:34:36.004" endtime="20221220 11:34:39.021">404 != 200</status>
+</test>
+<test id="s1-t16" name="Calculate Booking Cost Structure 16 Valid swap, on recurring" line="183">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${default_swap}</arg>
+<arg>SWAP_ON_RECURRING</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:42.222" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully updated data in db: invygo-test, table: bookings, with query: {'_id': ObjectId('638477ee9409f940f5f8419a')}, and new data: {'$set': {'bookingDateTime': datetime.datetime(2022, 8, 22, 11, 34, 39, 32002), 'nextPaymentDate': datetime.datetime(2023, 1, 19, 11, 34, 39, 32002)}}
+swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2023-01-19"}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=1&amp;isSwap=true&amp;swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2023-01-19"} || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 404 and reason: Not Found and resp data: {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:42.223" level="INFO">${code} = 404</msg>
+<msg timestamp="20221220 11:34:42.223" level="INFO">${status} = Not Found</msg>
+<msg timestamp="20221220 11:34:42.223" level="INFO">@{respdata} = [ {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'} ]</msg>
+<msg timestamp="20221220 11:34:42.223" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:42.223" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:42.223" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:39.030" endtime="20221220 11:34:42.223"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:42.226" level="FAIL">404 != 200</msg>
+<status status="FAIL" starttime="20221220 11:34:42.224" endtime="20221220 11:34:42.226"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:42.227" endtime="20221220 11:34:42.227"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][pricingData][oneMonth][basePrice] + ${0}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:42.228" endtime="20221220 11:34:42.230"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_paynow}</var>
+<arg>math.floor(${vehicle_data_db}[0][pricingData][oneMonth][basePrice] + ${respdata}[0][data][swapCostStructure][earlyTerminationFee] + ${respdata}[0][data][swapCostStructure][swapFee]+ ${respdata}[0][data][swapCostStructure][extraDayCost] - ${respdata}[0][data][swapCostStructure][remainingValue])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:42.232" endtime="20221220 11:34:42.232"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:42.232" endtime="20221220 11:34:42.233"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${correct_paynow}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:42.233" endtime="20221220 11:34:42.233"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:42.234" endtime="20221220 11:34:42.234"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][creditAmount]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:42.234" endtime="20221220 11:34:42.234"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][swapCostStructure][extraDayCost]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:42.234" endtime="20221220 11:34:42.235"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][swapCostStructure][swapFee]</arg>
+<arg>${50}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:42.235" endtime="20221220 11:34:42.235"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:42.236" endtime="20221220 11:34:42.236"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalanceUsed]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:42.236" endtime="20221220 11:34:42.236"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="FAIL" starttime="20221220 11:34:39.026" endtime="20221220 11:34:42.236">404 != 200</status>
+</test>
+<test id="s1-t17" name="Calculate Booking Cost Structure 17 Valid swap, After scheduled recurring" line="199">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${default_swap}</arg>
+<arg>SWAP_AFTER_SCHEDULED_RECURRING</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:45.296" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully updated data in db: invygo-test, table: bookings, with query: {'_id': ObjectId('638477ee9409f940f5f8419a')}, and new data: {'$set': {'bookingDateTime': datetime.datetime(2022, 8, 22, 11, 34, 42, 240158), 'nextPaymentDate': datetime.datetime(2023, 1, 14, 11, 34, 42, 240158)}}
+swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2023-01-19"}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=1&amp;isSwap=true&amp;swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2023-01-19"} || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 404 and reason: Not Found and resp data: {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:45.296" level="INFO">${code} = 404</msg>
+<msg timestamp="20221220 11:34:45.297" level="INFO">${status} = Not Found</msg>
+<msg timestamp="20221220 11:34:45.297" level="INFO">@{respdata} = [ {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'} ]</msg>
+<msg timestamp="20221220 11:34:45.297" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:45.297" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:45.297" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:42.239" endtime="20221220 11:34:45.297"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:45.299" level="FAIL">404 != 200</msg>
+<status status="FAIL" starttime="20221220 11:34:45.298" endtime="20221220 11:34:45.299"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:45.300" endtime="20221220 11:34:45.300"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][pricingData][oneMonth][basePrice] + ${0}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:45.301" endtime="20221220 11:34:45.301"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_paynow}</var>
+<arg>math.floor(${vehicle_data_db}[0][pricingData][oneMonth][basePrice] + ${respdata}[0][data][swapCostStructure][earlyTerminationFee] + ${respdata}[0][data][swapCostStructure][swapFee]+ ${respdata}[0][data][swapCostStructure][extraDayCost] - ${respdata}[0][data][swapCostStructure][remainingValue])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:45.302" endtime="20221220 11:34:45.302"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:45.302" endtime="20221220 11:34:45.302"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${correct_paynow}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:45.303" endtime="20221220 11:34:45.303"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:45.303" endtime="20221220 11:34:45.303"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][creditAmount]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:45.304" endtime="20221220 11:34:45.304"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][swapCostStructure][remainingValue]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:45.305" endtime="20221220 11:34:45.305"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][swapCostStructure][swapFee]</arg>
+<arg>${50}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:45.306" endtime="20221220 11:34:45.306"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:45.306" endtime="20221220 11:34:45.306"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalanceUsed]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:45.307" endtime="20221220 11:34:45.307"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="FAIL" starttime="20221220 11:34:42.238" endtime="20221220 11:34:45.308">404 != 200</status>
+</test>
+<test id="s1-t18" name="Calculate Booking Cost Structure 18 Valid swap, s2o" line="215">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${s2o_swap}</arg>
+<arg>SWAP_ON_RECURRING</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:47.513" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully updated data in db: invygo-test, table: bookings, with query: {'_id': ObjectId('638477ee9409f940f5f8419a')}, and new data: {'$set': {'bookingDateTime': datetime.datetime(2022, 8, 22, 11, 34, 45, 320805), 'nextPaymentDate': datetime.datetime(2023, 1, 19, 11, 34, 45, 320805)}}
+swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2023-01-19"}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=61e5628825cb8971e93ba12f&amp;selectedMileage=3000&amp;bookingPeriod=1&amp;isSwap=true&amp;swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2023-01-19"} || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 404 and reason: Not Found and resp data: {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('61e5628825cb8971e93ba12f')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:47.514" level="INFO">${code} = 404</msg>
+<msg timestamp="20221220 11:34:47.514" level="INFO">${status} = Not Found</msg>
+<msg timestamp="20221220 11:34:47.514" level="INFO">@{respdata} = [ {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'} ]</msg>
+<msg timestamp="20221220 11:34:47.514" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('61e5628825cb8971e93ba12f'), 'pricingData': {'oneMonth': {'basePrice': 1750, 'extraMileagePrice': 1750}, 'threeMonth': {'basePrice': 1750, 'extraMileagePrice': 1750}, 'sixMonth': {'b...</msg>
+<msg timestamp="20221220 11:34:47.514" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:47.514" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:45.317" endtime="20221220 11:34:47.515"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:47.516" level="FAIL">404 != 200</msg>
+<status status="FAIL" starttime="20221220 11:34:47.515" endtime="20221220 11:34:47.516"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:47.517" endtime="20221220 11:34:47.517"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][monthlyPricing] + ${0}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:47.518" endtime="20221220 11:34:47.518"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_paynow}</var>
+<arg>math.floor(${vehicle_data_db}[0][pricingData][fixedStarterFee] + ${respdata}[0][data][swapCostStructure][earlyTerminationFee] + ${respdata}[0][data][swapCostStructure][swapFee]+ ${respdata}[0][data][swapCostStructure][extraDayCost] - ${respdata}[0][data][swapCostStructure][remainingValue])</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:47.519" endtime="20221220 11:34:47.519"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:47.519" endtime="20221220 11:34:47.519"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${correct_paynow}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:47.520" endtime="20221220 11:34:47.520"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${vehicle_data_db}[0][pricingData][fixedStarterFee]</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:47.520" endtime="20221220 11:34:47.520"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][creditAmount]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:47.521" endtime="20221220 11:34:47.521"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][swapCostStructure][extraDayCost]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:47.522" endtime="20221220 11:34:47.522"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][swapCostStructure][swapFee]</arg>
+<arg>${50}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:47.522" endtime="20221220 11:34:47.522"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:47.523" endtime="20221220 11:34:47.523"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalanceUsed]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:47.524" endtime="20221220 11:34:47.524"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="FAIL" starttime="20221220 11:34:45.314" endtime="20221220 11:34:47.525">404 != 200</status>
+</test>
+<test id="s1-t19" name="Calculate Booking Cost Structure 19 Invalid swap, s2o booking" line="231">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${default_swap}</arg>
+<arg>SWAP_S2O</arg>
+<arg>${EMPTY}</arg>
+<msg timestamp="20221220 11:34:49.887" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+Successfully updated data in db: invygo-test, table: bookings, with query: {'_id': ObjectId('6377566ba3604a2adedd142d')}, and new data: {'$set': {'bookingDateTime': datetime.datetime(2022, 8, 22, 11, 34, 47, 527906), 'nextPaymentDate': datetime.datetime(2023, 1, 19, 11, 34, 47, 527906)}}
+swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2023-01-19"}
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=1&amp;isSwap=true&amp;swapInfo={"swappedBookingId":"638477ee9409f940f5f8419a","swapDateTime":"2023-01-19"} || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 404 and reason: Not Found and resp data: {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z</msg>
+<msg timestamp="20221220 11:34:49.887" level="INFO">${code} = 404</msg>
+<msg timestamp="20221220 11:34:49.887" level="INFO">${status} = Not Found</msg>
+<msg timestamp="20221220 11:34:49.887" level="INFO">@{respdata} = [ {'statusCode': 404, 'error': 'Not Found', 'message': 'Booking data not found'} ]</msg>
+<msg timestamp="20221220 11:34:49.887" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:49.888" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:49.888" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 0.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10, 14...</msg>
+<status status="PASS" starttime="20221220 11:34:47.527" endtime="20221220 11:34:49.888"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:49.889" level="FAIL">404 != 200</msg>
+<status status="FAIL" starttime="20221220 11:34:49.889" endtime="20221220 11:34:49.889"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:49.890" endtime="20221220 11:34:49.890"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="FAIL" starttime="20221220 11:34:47.527" endtime="20221220 11:34:49.891">404 != 200</status>
+</test>
+<test id="s1-t20" name="Calculate Booking Cost Structure 20 Valid Data, No Swap, extra mileage, insurance, driver, use all wallet" line="238">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${valid_data_mileage_insurance_driver}</arg>
+<arg>${EMPTY}</arg>
+<arg>WALLET_1000</arg>
+<msg timestamp="20221220 11:34:52.201" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z
+UPDATE wallet_ledger SET amount = 1000 WHERE customer_id = '63623f7e7a1af74b37237fc2' []
+1 record updated.
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;upgradedMileage=true&amp;bookingPeriod=1&amp;fullInsurance=true&amp;numOfAdditionalDriver=1 || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 200 and reason: OK and resp data: {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1935, 'monthlyBasePricing': 1450, 'starterFee': 0, 'bookingPeriod': 1, 'upgradedMileage': True, 'mileageCost': 155, 'selectedMileage': '3000', 'fixedStarterFee': None, 'fullInsurance': True, 'fullInsuranceAmount': 160, 'unitAdditionalDriverAmount': 1, 'additionalDriverAmount': 170, 'promoDiscountAmount': 0, 'swapCostStructure': None, 'currentWalletBalance': 0, 'currentWalletBalanceUsed': 0, 'creditAmount': 0, 'payNow': 1935}}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': ''}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z
+UPDATE wallet_ledger SET amount = 0 WHERE customer_id = '63623f7e7a1af74b37237fc2' []
+1 record updated.</msg>
+<msg timestamp="20221220 11:34:52.201" level="INFO">${code} = 200</msg>
+<msg timestamp="20221220 11:34:52.201" level="INFO">${status} = OK</msg>
+<msg timestamp="20221220 11:34:52.201" level="INFO">@{respdata} = [ {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1935, 'monthlyBasePricing': 1450, 'starterFee': 0, 'bookingPeriod': 1, 'upgradedMileage': True, 'mileageCost': 155, 'selectedMileage'...</msg>
+<msg timestamp="20221220 11:34:52.201" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:52.201" level="INFO">${promo_data_db} = []</msg>
+<msg timestamp="20221220 11:34:52.201" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 1000.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10,...</msg>
+<status status="PASS" starttime="20221220 11:34:49.894" endtime="20221220 11:34:52.201"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:52.203" endtime="20221220 11:34:52.203"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:52.204" endtime="20221220 11:34:52.204"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][pricingData][oneMonth][extraMileagePrice] + ${vehicle_data_db}[0][pricingData][fullInsurance] + ${vehicle_data_db}[0][pricingData][secondaryDriver]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221220 11:34:52.206" level="INFO">${correct_monthly} = 1935.0</msg>
+<status status="PASS" starttime="20221220 11:34:52.205" endtime="20221220 11:34:52.206"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_paynow}</var>
+<arg>${correct_monthly} - ${wallet_data_db}[0][3]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221220 11:34:52.206" level="INFO">${correct_paynow} = 935.0</msg>
+<status status="PASS" starttime="20221220 11:34:52.206" endtime="20221220 11:34:52.206"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:52.207" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'float'&gt;</msg>
+<status status="PASS" starttime="20221220 11:34:52.207" endtime="20221220 11:34:52.207"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${correct_paynow}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:52.208" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'float'&gt;</msg>
+<msg timestamp="20221220 11:34:52.208" level="FAIL">1935 != 935.0</msg>
+<status status="FAIL" starttime="20221220 11:34:52.207" endtime="20221220 11:34:52.208"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:52.208" endtime="20221220 11:34:52.208"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${wallet_data_db}[0][3]</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:52.208" endtime="20221220 11:34:52.208"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="FAIL" starttime="20221220 11:34:49.893" endtime="20221220 11:34:52.209">1935 != 935.0</status>
+</test>
+<test id="s1-t21" name="Calculate Booking Cost Structure 21 Valid Data, No Swap, promocode, 6 months, use partial wallet" line="250">
+<kw name="Calculate Booking Cost Structure" library="booking_service">
+<var>${code}</var>
+<var>${status}</var>
+<var>@{respdata}</var>
+<var>${vehicle_data_db}</var>
+<var>${promo_data_db}</var>
+<var>${wallet_data_db}</var>
+<arg>${valid_data_noaddon_promocode_6months}</arg>
+<arg>${EMPTY}</arg>
+<arg>WALLET_1000</arg>
+<msg timestamp="20221220 11:34:54.426" level="INFO">------------------------------ 
+start of case run for API calculate-booking-cost-structure
+------------------------------
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z
+UPDATE wallet_ledger SET amount = 1000 WHERE customer_id = '63623f7e7a1af74b37237fc2' []
+1 record updated.
+Successfully loaded service config
+Successfully connected to test-api.invygo.com:8080
+Successfully sent method: GET || complete_path: /booking/calculateBookingCostStructure?vehicleId=5c7e7ec18cb75c93fc6bec1d&amp;selectedMileage=3000&amp;bookingPeriod=6&amp;promoCode=ROOZITEST || send_body: None || send_headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2Mzk5YzM3ODA1Njc1YjIyOGFkMjBhNDQiLCJjcmVhdGVkQnkiOiIiLCJyb2xlIjoiY3VzdG9tZXIiLCJzZXNzaW9uSUQiOiI2Mzk5YzM3ODA1Njc1YjJmNDNkMjBhNDkiLCJkYXRlIjoiMjAyMi0xMi0xNFQxMjozNzoxMi44OTZaIiwiaWF0IjoxNjcxMDIxNDMyLCJleHAiOjE2OTY5NDE0MzJ9.Shq0sa9-qg8g7jBW1tEfevrU4NAsIcRj0mXgLnoD01E', 'content-language': 'en'}
+Successfully decode response data
+Status: 200 and reason: OK and resp data: {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1400, 'monthlyBasePricing': 1400, 'starterFee': 0, 'bookingPeriod': 6, 'mileageCost': 0, 'selectedMileage': '3000', 'fixedStarterFee': None, 'fullInsurance': False, 'fullInsuranceAmount': 160, 'unitAdditionalDriverAmount': 0, 'additionalDriverAmount': 0, 'promoDiscountAmount': 100, 'swapCostStructure': None, 'currentWalletBalance': 0, 'currentWalletBalanceUsed': 0, 'creditAmount': 0, 'payNow': 1300}}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: vehicles, and with query: {'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d')}
+Successfully loaded service config
+Successfully read data in db: invygo-test, table: promotions, and with query: {'code': 'ROOZITEST'}
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z
+Successfully loaded service config
+dev-mysql-8.c8xdtxz9r6gj.me-south-1.rds.amazonaws.com admin YlfRv3t27Z
+UPDATE wallet_ledger SET amount = 0 WHERE customer_id = '63623f7e7a1af74b37237fc2' []
+1 record updated.</msg>
+<msg timestamp="20221220 11:34:54.426" level="INFO">${code} = 200</msg>
+<msg timestamp="20221220 11:34:54.427" level="INFO">${status} = OK</msg>
+<msg timestamp="20221220 11:34:54.427" level="INFO">@{respdata} = [ {'statusCode': 200, 'message': 'Success', 'data': {'monthlyFee': 1400, 'monthlyBasePricing': 1400, 'starterFee': 0, 'bookingPeriod': 6, 'mileageCost': 0, 'selectedMileage': '3000', 'fixedStarterFee'...</msg>
+<msg timestamp="20221220 11:34:54.428" level="INFO">${vehicle_data_db} = [{'_id': ObjectId('5c7e7ec18cb75c93fc6bec1d'), 'plateNumber': 'AD39617-13', 'serviceProviderId': ObjectId('5c7dd62f2807784624668809'), 'isDeleted': True, 'vinNumber': 'MDHBN7ADXKG662778', 'brandName':...</msg>
+<msg timestamp="20221220 11:34:54.428" level="INFO">${promo_data_db} = [{'_id': ObjectId('63a048fb47e7da22cc709525'), 'type': 'PROMOTIONCODE', 'isEnabled': True, 'isDeleted': False, 'name': 'roozi test', 'code': 'ROOZITEST', 'locking': [], 'restriction': [], 'reward': [{...</msg>
+<msg timestamp="20221220 11:34:54.428" level="INFO">${wallet_data_db} = [(21163, '63623f7e7a1af74b37237fc2', 'CREDIT', 1000.0, 'AED', 'CUSTOMER_SERVICE', 'c', 'c', '6350fb9766962f43980bd922', datetime.datetime(2022, 11, 28, 10, 14, 32), datetime.datetime(2022, 11, 28, 10,...</msg>
+<status status="PASS" starttime="20221220 11:34:52.212" endtime="20221220 11:34:54.428"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${code}</arg>
+<arg>${200}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:54.430" endtime="20221220 11:34:54.431"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status}</arg>
+<arg>OK</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:54.432" endtime="20221220 11:34:54.432"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_monthly}</var>
+<arg>${vehicle_data_db}[0][pricingData][sixMonth][basePrice] + ${0}</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221220 11:34:54.433" level="INFO">${correct_monthly} = 1400</msg>
+<status status="PASS" starttime="20221220 11:34:54.433" endtime="20221220 11:34:54.434"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${correct_paynow}</var>
+<arg>${vehicle_data_db}[0][pricingData][sixMonth][basePrice] - ${promo_data_db}[0][reward][0][value] - ${respdata}[0][data][currentWalletBalanceUsed]</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20221220 11:34:54.435" level="INFO">${correct_paynow} = 1300</msg>
+<status status="PASS" starttime="20221220 11:34:54.434" endtime="20221220 11:34:54.435"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][monthlyFee]</arg>
+<arg>${correct_monthly}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:54.435" endtime="20221220 11:34:54.435"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${correct_paynow}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20221220 11:34:54.436" endtime="20221220 11:34:54.436"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][payNow]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<msg timestamp="20221220 11:34:54.437" level="FAIL">1300 != 0</msg>
+<status status="FAIL" starttime="20221220 11:34:54.436" endtime="20221220 11:34:54.437"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][starterFee]</arg>
+<arg>${0}</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:54.438" endtime="20221220 11:34:54.438"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${respdata}[0][data][currentWalletBalance]</arg>
+<arg>${wallet_data_db}[0][3]</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20221220 11:34:54.438" endtime="20221220 11:34:54.438"/>
+</kw>
+<tag>URL Cases</tag>
+<status status="FAIL" starttime="20221220 11:34:52.211" endtime="20221220 11:34:54.439">1300 != 0</status>
+</test>
+<status status="FAIL" starttime="20221220 11:34:09.756" endtime="20221220 11:34:54.441"/>
+</suite>
+<statistics>
+<total>
+<stat pass="9" fail="12" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="9" fail="12" skip="0">URL Cases</stat>
+</tag>
+<suite>
+<stat pass="9" fail="12" skip="0" id="s1" name="Calculate Booking Cost Structure">Calculate Booking Cost Structure</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
